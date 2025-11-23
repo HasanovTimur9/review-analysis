@@ -25,12 +25,22 @@
     font-display: swap;
 }
 
+@font-face {
+    font-family: 'Krasnodar';
+    src: url('../fonts/Krasnodar-Grotesk.woff2') format('woff2'),
+    url('../fonts/Krasnodar-Grotesk.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
 html, body {
     padding: 0;
     margin: 0;
     height: 100%;
     color: white;
-    font-family: 'DIN', sans-serif;
+    font-family: 'Krasnodar', sans-serif;
+    letter-spacing: 0.1em;
 }
 
 .login-container {
