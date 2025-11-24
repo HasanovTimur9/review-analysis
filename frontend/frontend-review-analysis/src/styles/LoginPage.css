@@ -1,46 +1,27 @@
-@font-face {
-    font-family: 'Cakra';
-    src: url('../fonts/Cakra-Normal.woff2') format('woff2'),
-         url('../fonts/Cakra-Normal.woff') format('woff');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
+/* Заголовок */
+.login-title,
+h1 {
+    font-family: 'Panama Monospace', cursive;
+    font-weight: normal;
+    font-size: 3.2rem;
+    text-align: center;
+    margin: 0 0 2rem 0;
+    letter-spacing: 0;
+    text-shadow: 0 2px 15px rgba(0, 0, 0, 0.6);
+    color: rgb(255, 255, 255);
 }
 
-@font-face {
-    font-family: 'DIN';
-    src: url('../fonts/DIN-Mittelschrift.woff2') format('woff2'),
-         url('../fonts/DIN-Mittelschrift.woff') format('woff');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Hobo';
-    src: url('../fonts/HoboBT.woff2') format('woff2'),
-         url('../fonts/HoboBT.woff') format('woff');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Krasnodar';
-    src: url('../fonts/Krasnodar-Grotesk.woff2') format('woff2'),
-    url('../fonts/Krasnodar-Grotesk.woff') format('woff');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-}
-
-html, body {
-    padding: 0;
-    margin: 0;
-    height: 100%;
-    color: white;
-    font-family: 'Krasnodar', sans-serif;
-    letter-spacing: 0.1em;
+/* Все подписи к полям */
+.login-label,
+label {
+    display: block;
+    font-family: 'Panama', sans-serif;
+    font-style: italic;
+    font-weight: 700;
+    font-size: 1.05rem;
+    margin-bottom: 0.55rem;
+    letter-spacing: 0.5px;
+    color: rgb(255, 255, 255);
 }
 
 .login-container {
@@ -53,7 +34,7 @@ html, body {
     overflow-y: auto;
     width: 100%;
     height: 100%;
-    background: url('ceramic (1).jpeg') no-repeat center center;
+    background: url('../images/ceramic (1).jpeg') no-repeat center center;
     background-size: cover;
 }
 

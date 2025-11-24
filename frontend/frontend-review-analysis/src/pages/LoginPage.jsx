@@ -1,5 +1,6 @@
 import { useState } from "react";
-import './LoginPage.css';
+import '../styles/App.css';
+import '../styles/LoginPage.css';
 
 export default function LoginPage() {
     const [name, setName] = useState("");
