@@ -64,6 +64,7 @@
     cursor: pointer;
     transition: all 0.3s ease;
     translate: 40px;
+    text-decoration: none;
 }
 
 .try-button:hover {

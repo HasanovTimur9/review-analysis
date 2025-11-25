@@ -19,6 +19,14 @@ const HomePage = () => {
         return () => clearInterval(interval);
     }, []);
 
+    const scrollToLogin = () => {
+        // Прокрутка к секции логина
+        const loginSection = document.getElementById('login-section');
+        if (loginSection) {
+            loginSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    };
+
     return (
         <div className="page-container">
             <div className="content-box">
@@ -30,7 +38,7 @@ const HomePage = () => {
                         <p className="subtitle">
                             <strong>Узнайте что на самом деле думают ваши клиенты — за 3 минуты и без аналитиков</strong>
                         </p>
-                        <button className="try-button">
+                        <button className="try-button" onClick={scrollToLogin}>
                             Попробовать
                             <span className="arrow">
                                 <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
