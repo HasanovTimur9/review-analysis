@@ -2,10 +2,13 @@ import React from 'react';
 import LoginPage from './pages/LoginPage';
 import FontShowcase from './pages/FontShowcase';
 import './styles/LoginPage.css';
+import HomePage from "./pages/HomePage.jsx";
 
 export default function App() {
     return (
         <>
+            <HomePage />
+
             <LoginPage />
 
             <FontShowcase />

@@ -1,0 +1,189 @@
+/* Сетка: текст слева, карусель справа */
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Основной контейнер с фоном */
+.page-container {
+    position: relative;
+    min-height: 100vh;
+    background: var(--color-blue-soft);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+
+/* Белый контейнер с контентом - теперь по центру экрана */
+.content-box {
+    padding: 80px 50px;
+    max-width: 1400px;
+    margin: 0 auto;
+    border-radius: 24px;
+    background: var(--color-white);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+    width: 100%;
+}
+
+.main-title {
+    font-family: 'Panama Monospace', sans-serif;
+    font-size: 65px;
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--color-brown);;
+    text-shadow: none;
+}
+
+.subtitle {
+    font-family: 'Panama', sans-serif;
+    font-size: 25px;
+    line-height: 1.6;
+    color: var(--color-brown);
+    margin-bottom: 40px;
+    padding-right: 15px;
+    padding-left: 45px;
+}
+
+.try-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 32px;
+    background: var(--color-blue-soft);
+    color: var(--color-brown);
+    border: none;
+    border-radius: 12px;
+    font-family: 'Panama', sans-serif;
+    font-size: 25px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    translate: 40px;
+}
+
+.try-button:hover {
+    background: var(--color-brown);
+    color: var(--color-white);
+    transform: translateY(-2px);
+}
+
+.arrow {
+    font-size: 25px;
+    transition: transform 0.3s ease;
+}
+
+.try-button:hover .arrow {
+    transform: translateX(4px);
+}
+
+/* Карусель */
+.carousel-container {
+    position: relative;
+    width: 100%;
+    height: 520px;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.15);
+    background: #000;
+}
+
+.carousel-track {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s cubic-bezier(0.7, 0, 0.3, 1);
+}
+
+.carousel-slide {
+    min-width: 100%;
+    height: 100%;
+}
+
+.carousel-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Точки-индикаторы */
+.carousel-dots {
+    position: absolute;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 12px;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dot.active {
+    background: white;
+    transform: scale(1.3);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+}
+
+/* Адаптивность */
+@media (max-width: 1024px) {
+    .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 60px;
+        text-align: center;
+    }
+
+    .hero-content {
+        padding-right: 0;
+    }
+
+    .main-title {
+        font-size: 52px;
+    }
+
+    .carousel-container {
+        height: 400px;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
+    .content-box {
+        padding: 60px 30px;
+        margin: 20px;
+    }
+}
+
+@media (max-width: 640px) {
+    .content-box {
+        padding: 40px 20px;
+        margin: 15px;
+    }
+
+    .main-title {
+        font-size: 36px;
+    }
+
+    .carousel-container {
+        height: 300px;
+    }
+
+    .hero-grid {
+        gap: 40px;
+    }
+
+    .page-container {
+        align-items: flex-start; /* На мобильных начинаем с верха */
+        padding-top: 20px;
+    }
+}
