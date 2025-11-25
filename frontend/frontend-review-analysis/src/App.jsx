@@ -16,10 +16,10 @@ export default function App() {
             <footer style={{
                 padding: '100px 40px',
                 textAlign: 'center',
-                background: '#EFEED4',
+                background: '#50463C',
                 fontFamily: 'CoventryC',
                 fontSize: '3rem',
-                color: '#50463C'
+                color: '#EFEED4'
             }}>
                 Made with hate to default fonts
             </footer>
