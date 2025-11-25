@@ -55,11 +55,10 @@
     font-display: swap;
 }
 
-/* 4. Coventry Garden (рукописный) */
 @font-face {
-    font-family: 'CoventryC';
-    src: url('../fonts/coventryc.otf') format('opentype');
-    font-weight: normal;
+    font-family: 'Krasnodar';
+    src: url('../fonts/Krasnodar-Grotesk.otf') format('opentype');
+    font-weight: 400;
     font-style: normal;
     font-display: swap;
 }
@@ -68,6 +67,6 @@ html, body {
     padding: 0;
     margin: 0;
     height: 100%;
-    color: #4e443c;
+    color: var(--color-brown);
     font-family: 'Panama', "Panama Monospace", "CoventryC", monospace;
 }
