@@ -47,6 +47,7 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 60px;
     align-items: start;
+    padding: 70px 0;
 }
 
 .circle-container {
@@ -134,13 +135,13 @@
 }
 
 .step-title {
-    font-size: 1.5rem;
+    font-size: 2rem;
     font-weight: 700;
     translate: 0 100px;
 }
 
 .step-description {
-    font-size: 1rem;
+    font-size: 1.3rem;
     line-height: 1.6;
     color: var(--color-brown);
     margin-block: 0;

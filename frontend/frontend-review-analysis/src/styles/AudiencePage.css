@@ -1,0 +1,249 @@
+.audience-page {
+    min-height: 100vh;
+    background: var(--color-white);
+    padding: 10px 0;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.section-title {
+    font-size: 3rem;
+    text-align: center;
+    color: var(--color-brown);
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.section-subtitle {
+    font-size: 1.5rem;
+    text-align: center;
+    color: var(--color-brown);
+    margin-bottom: 80px;
+    line-height: 1.6;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Горизонтальный аккордеон */
+.horizontal-accordion {
+    display: flex;
+    gap: 20px;
+    align-items: stretch;
+    height: 600px;
+}
+
+.accordion-item {
+    flex: 0 0 80px; /* Закрытое состояние */
+    border-radius: 40px;
+    padding: 30px 20px;
+    cursor: pointer;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+    min-height: 400px;
+}
+
+.accordion-item.active {
+    flex: 1; /* Раскрытое состояние */
+    padding: 40px 30px;
+}
+
+/* Цвета блоков */
+.accordion-item--blue-deep {
+    background: var(--color-blue-deep);
+}
+
+.accordion-item--blue-main {
+    background: var(--color-blue-main);
+}
+
+.accordion-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    color: var(--color-white);
+}
+
+.accordion-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--color-white);
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    text-align: center;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.accordion-item.active .accordion-title {
+    writing-mode: horizontal-tb;
+    transform: none;
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+    text-align: left;
+    display: block;
+    height: auto;
+    justify-content: flex-start;
+}
+
+.accordion-expanded {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    opacity: 0;
+    transform: translateY(10px);
+    visibility: hidden;
+}
+
+.accordion-item.active .accordion-expanded {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+}
+
+.accordion-image-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0;
+    padding: 0 20px;
+}
+
+.accordion-image {
+    max-width: 100%;
+    max-height: 200px;
+    border-radius: 16px;
+    object-fit: cover;
+}
+
+.accordion-description {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    text-align: center;
+    color: var(--color-white);
+    margin-top: 20px;
+}
+
+/* Номер блока в кружочке */
+.accordion-number {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--color-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--color-brown);
+    transition: all 0.3s ease;
+    line-height: 1;
+    padding-top: 4px;
+
+}
+
+.accordion-item.active .accordion-number {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* Адаптивность */
+@media (max-width: 1024px) {
+    .horizontal-accordion {
+        flex-direction: column;
+        min-height: auto;
+        gap: 15px;
+    }
+
+    .accordion-item {
+        flex: 1;
+        min-height: 80px;
+        padding: 20px;
+    }
+
+    .accordion-item.active {
+        min-height: 400px;
+        padding: 30px;
+    }
+
+    .accordion-title {
+        writing-mode: horizontal-tb;
+        transform: none;
+        font-size: 1.2rem;
+    }
+
+    .accordion-item.active .accordion-title {
+        font-size: 1.5rem;
+    }
+
+    .accordion-number {
+        bottom: 15px;
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .audience-page {
+        padding: 80px 0;
+    }
+
+    .section-title {
+        font-size: 2.2rem;
+    }
+
+    .section-subtitle {
+        font-size: 1.2rem;
+        margin-bottom: 60px;
+    }
+
+    .accordion-item.active {
+        min-height: 350px;
+    }
+
+    .accordion-title {
+        font-size: 1.1rem;
+    }
+
+    .accordion-item.active .accordion-title {
+        font-size: 1.3rem;
+    }
+
+    .accordion-description {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .accordion-item.active {
+        min-height: 300px;
+        padding: 20px;
+    }
+
+    .accordion-image-container {
+        margin: 15px 0;
+        padding: 0 10px;
+    }
+
+    .accordion-image {
+        max-height: 150px;
+    }
+}

@@ -2,7 +2,7 @@
 .hero-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 80px;
+    gap: 100px;
     align-items: center;
     max-width: 1400px;
     margin: 0 auto;
@@ -21,13 +21,12 @@
 
 /* Белый контейнер с контентом - теперь по центру экрана */
 .content-box {
-    padding: 80px 50px;
+    padding: 100px;
     max-width: 1400px;
     margin: 0 auto;
     border-radius: 24px;
     background: var(--color-white);
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
-    width: 85%;
 }
 
 .main-title {
@@ -36,6 +35,7 @@
     line-height: 1.1;
     color: var(--color-brown);;
     text-shadow: none;
+    text-align: left
 }
 
 .subtitle {
@@ -43,8 +43,7 @@
     line-height: 1.6;
     color: var(--color-brown);
     margin-bottom: 40px;
-    padding-right: 15px;
-    padding-left: 45px;
+    text-align: left;
 }
 
 .try-button {
@@ -60,7 +59,6 @@
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
-    translate: 40px;
     text-decoration: none;
 }
 
@@ -140,6 +138,7 @@
         grid-template-columns: 1fr;
         gap: 60px;
         text-align: center;
+        max-width: 100%;
     }
 
     .hero-content {
@@ -157,8 +156,9 @@
     }
 
     .content-box {
+        width: 94vw;
         padding: 60px 30px;
-        margin: 20px;
+        min-height: 90vh;
     }
 }
 
@@ -181,7 +181,7 @@
     }
 
     .page-container {
-        align-items: flex-start; /* На мобильных начинаем с верха */
+        align-items: flex-start;
         padding-top: 20px;
     }
 }
