@@ -31,7 +31,6 @@
 }
 
 .main-title {
-    font-family: 'Panama Monospace', sans-serif;
     font-size: 65px;
     font-weight: 700;
     line-height: 1.1;
@@ -40,7 +39,6 @@
 }
 
 .subtitle {
-    font-family: 'Panama', sans-serif;
     font-size: 25px;
     line-height: 1.6;
     color: var(--color-brown);
@@ -58,7 +56,6 @@
     color: var(--color-brown);
     border: none;
     border-radius: 12px;
-    font-family: 'Panama', sans-serif;
     font-size: 25px;
     font-weight: 600;
     cursor: pointer;

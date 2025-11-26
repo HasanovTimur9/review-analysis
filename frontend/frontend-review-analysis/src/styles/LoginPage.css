@@ -1,7 +1,6 @@
 /* Заголовок */
 .login-title,
 h1 {
-    font-family: 'Panama Monospace', cursive;
     font-weight: normal;
     font-size: 3.2rem;
     text-align: center;
@@ -15,7 +14,6 @@ h1 {
 .login-label,
 label {
     display: block;
-    font-family: 'Panama', sans-serif;
     font-style: italic;
     font-weight: 700;
     font-size: 1.05rem;

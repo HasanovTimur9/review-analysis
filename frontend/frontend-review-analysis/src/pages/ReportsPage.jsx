@@ -52,7 +52,7 @@ const ReportsPage = () => {
     return (
         <div className="reports-page">
             <div className="container">
-                <h2 className="section-title">Что именно вы увидите в отчете?</h2>
+                <h2 className="section-report-title">Что именно вы увидите в отчете?</h2>
                 <p className="section-subtitle">Одна загрузка - и вы точно знаете:</p>
 
                 <div className="reports-carousel">
