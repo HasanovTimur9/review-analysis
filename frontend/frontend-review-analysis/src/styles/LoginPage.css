@@ -6,8 +6,7 @@ h1 {
     text-align: center;
     margin: 0 0 2rem 0;
     letter-spacing: 0;
-    text-shadow: 0 2px 15px rgba(0, 0, 0, 0.6);
-    color: rgb(255, 255, 255);
+    color: var(--color-brown);
 }
 
 /* Все подписи к полям */
@@ -19,7 +18,7 @@ label {
     font-size: 1.05rem;
     margin-bottom: 0.55rem;
     letter-spacing: 0.5px;
-    color: rgb(255, 255, 255);
+    color: var(--color-brown);
 }
 
 .login-container {
@@ -104,7 +103,7 @@ label {
 .login-input {
     width: 95%;
     padding: 0.5rem;
-    border: 1px solid #d1d5db;
+    border: 1px solid var(--color-brown);
     border-radius: 0.75rem;
     margin-bottom: 1rem;
 }
@@ -118,8 +117,8 @@ label {
 
 .login-button {
     width: 100%;
-    background-color: #2b4a37;
-    color: white;
+    background-color: var(--color-brown);
+    color: var(--color-white);
     padding: 0.5rem;
     border-radius: 0.75rem;
     font-weight: 500;
