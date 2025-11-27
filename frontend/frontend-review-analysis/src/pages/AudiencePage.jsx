@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import '../styles/AudiencePage.css';
-import img1 from "../images/small_business.jpg";
-import img2 from "../images/marketplace.jpg";
-import img3 from "../images/restaurant.jpg";
-import img4 from "../images/service.jpg";
-import img5 from "../images/director.jpg";
-import img6 from "../images/branches.jpg";
+import img1 from "../images/small_business.webp";
+import img2 from "../images/marketplace.webp";
+import img3 from "../images/restaurant.webp";
+import img4 from "../images/service.webp";
+import img5 from "../images/director.webp";
+import img6 from "../images/branches.webp";
 
 
 const AudiencePage = () => {
