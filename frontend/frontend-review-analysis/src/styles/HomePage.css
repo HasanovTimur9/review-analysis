@@ -493,10 +493,6 @@
             0 15px 30px rgba(0, 0, 0, 0.35);
 }
 
-.login-corner-button:hover svg path {
-    stroke: var(--color-blue-deep);
-}
-
 .login-corner-button svg {
     transition: all 0.3s ease;
 }
