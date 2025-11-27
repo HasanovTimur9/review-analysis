@@ -9,6 +9,10 @@
     --color-brown:        #50463C;
 }
 
+#root {
+    width: 100%;
+    overflow-x: auto;
+}
 /* 1. Panama — пропорциональный шрифт (обычный) */
 @font-face {
     font-family: 'Panama';

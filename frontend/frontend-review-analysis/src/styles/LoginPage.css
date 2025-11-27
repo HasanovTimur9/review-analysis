@@ -165,7 +165,6 @@ label {
 /* Большие мобильные (481px - 767px) */
 @media (max-width: 767px) {
     .login-container {
-        padding: 20px;
         align-items: flex-start;
         min-height: 100vh;
     }
@@ -181,9 +180,8 @@ label {
         max-width: 100%;
         padding: 2rem 1.5rem;
         border-radius: 18px;
-        margin: 40px 0;
-        backdrop-filter: blur(15px);
-        -webkit-backdrop-filter: blur(15px);
+        margin: 40px;
+        transform: translateY(215px);
     }
 
     .login-title {
@@ -212,15 +210,6 @@ label {
     .login-error {
         font-size: 0.8rem;
         margin-bottom: 0.8rem;
-    }
-
-    /* Упрощаем тени для мобильных */
-    .login-box {
-        box-shadow:
-                0 -1px 0 rgba(255, 255, 255, 0.3) inset,
-                0 1px 0 rgba(255, 255, 255, 0.3) inset,
-                0 8px 15px rgba(0, 0, 0, 0.3),
-                0 15px 30px rgba(0, 0, 0, 0.35);
     }
 }
 
@@ -350,14 +339,6 @@ label {
 
     .login-button {
         padding: 0.3rem;
-    }
-}
-
-/* Поддержка высокопиксельных экранов */
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-    .login-box {
-        -webkit-backdrop-filter: blur(25px);
-        backdrop-filter: blur(25px);
     }
 }
 
