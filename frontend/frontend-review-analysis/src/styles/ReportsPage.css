@@ -36,7 +36,7 @@
     width: 31.3rem;
     height: 31.3rem;
     border-radius: 1.5rem;
-    border: 0.13rem dashed var(--color-brown);
+    border: 0.25rem dashed var(--color-brown);
     padding: 2.5rem;
     display: flex;
     flex-direction: column;
@@ -77,7 +77,7 @@
     justify-content: flex-start;
 }
 
-.report-title {
+.report-title, .report-description  {
     font-size: 1.8rem;
     font-weight: 700;
     text-align: center;
@@ -109,14 +109,6 @@
     align-items: center;
 }
 
-.report-description {
-    font-size: 1.3rem;
-    text-align: center;
-    color: var(--color-brown);
-    line-height: 1.5;
-    max-width: 25rem;
-}
-
 /* Управление каруселью */
 .carousel-controls {
     display: flex;
@@ -134,7 +126,7 @@
     cursor: pointer;
     transition: all 0.3s ease;
     color: var(--color-brown);
-    border: none;
+    border: 0.25rem solid var(--color-blue-main);
 }
 
 .carousel-arrow--left {
@@ -145,12 +137,12 @@
 .carousel-arrow--right {
     color: var(--color-white);
     background: var(--color-blue-deep);
+    border: 0.25rem solid var(--color-blue-deep);
 }
 
 .carousel-arrow:hover {
-    background: var(--color-green);
+    background: transparent;
     color: var(--color-brown);
-    transform: scale(1.1);
 }
 
 /* Медиа-запросы для адаптивности */
