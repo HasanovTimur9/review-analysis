@@ -36,36 +36,39 @@ export default function LoginPage({ onLogin }) {
 
     return (
         <div className="login-container">
-            <div className="login-box">
-                <h1 className="login-title">Авторизация</h1>
-                <form onSubmit={handleSubmit} className="login-form">
-                    <div>
-                        <label className="login-label">Название</label>
-                        <input
-                            type="text"
-                            className="login-input"
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
-                            required
-                            disabled={loading}
-                        />
-                    </div>
-                    <div>
-                        <label className="login-label">Адрес</label>
-                        <input
-                            type="text"
-                            className="login-input"
-                            value={address}
-                            onChange={(e) => setAddress(e.target.value)}
-                            required
-                            disabled={loading}
-                        />
-                    </div>
-                    {error && <p className="login-error">{error}</p>}
-                    <button type="submit" disabled={loading} className="login-button">
-                        {loading ? "Вход..." : "Войти"}
-                    </button>
-                </form>
+            <div className="login-content">
+                <h1 className="login-container-title">Готовы узнать, что на самом деле беспокоит ваших клиентов?</h1>
+                <div className="login-box">
+                    <h1 className="login-title">Авторизация</h1>
+                    <form onSubmit={handleSubmit} className="login-form">
+                        <div>
+                            <label className="login-label">Название</label>
+                            <input
+                                type="text"
+                                className="login-input"
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                                required
+                                disabled={loading}
+                            />
+                        </div>
+                        <div>
+                            <label className="login-label">Адрес</label>
+                            <input
+                                type="text"
+                                className="login-input"
+                                value={address}
+                                onChange={(e) => setAddress(e.target.value)}
+                                required
+                                disabled={loading}
+                            />
+                        </div>
+                        {error && <p className="login-error">{error}</p>}
+                        <button type="submit" disabled={loading} className="login-button">
+                            {loading ? "Вход..." : "Войти"}
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
     );
