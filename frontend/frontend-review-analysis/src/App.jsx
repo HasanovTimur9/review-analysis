@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import LoginPage from './pages/LoginPage';
-import './styles/LoginPage.css';
 import HomePage from "./pages/HomePage.jsx";
 import BenefitsPage from "./pages/BenefitsPage.jsx";
 import ReportsPage from "./pages/ReportsPage.jsx";
 import AudiencePage from "./pages/AudiencePage.jsx";
+import DashboardPage from "./pages/DashboardPage.jsx";
+
+import './styles/LoginPage.css';
+import './styles/App.css';
 
 const Logo = () => (
     <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -15,25 +18,84 @@ const Logo = () => (
 );
 
 export default function App() {
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [currentPage, setCurrentPage] = useState('home'); // 'home' или 'dashboard'
+
+    // УБРАНО: состояние savedFiles — DashboardPage сам управляет файлами!
+    // const [savedFiles, setSavedFiles] = useState([]);
+
+    // Проверяем авторизацию при загрузке
+    useEffect(() => {
+        const user = localStorage.getItem('user');
+        if (user) {
+            setIsAuthenticated(true);
+        }
+        // Убрано: загрузка файлов отсюда — DashboardPage сам восстановит из localStorage
+    }, []);
+
+    const handleLogin = () => {
+        localStorage.setItem('user', 'authenticated');
+        setIsAuthenticated(true);
+        setCurrentPage('dashboard');
+    };
+
+    const handleGoToDashboard = () => {
+        setCurrentPage('dashboard');
+    };
+
+    const handleGoHome = () => {
+        setCurrentPage('home');
+    };
+
+    const handleLogout = () => {
+        setIsAuthenticated(false);
+        setCurrentPage('home');
+        localStorage.removeItem('user');
+        // Файлы остаются в localStorage — пользователь может вернуться
+    };
+
     return (
         <>
-            <HomePage />
-            <BenefitsPage />
-            <ReportsPage />
-            <AudiencePage />
+            {isAuthenticated && currentPage === 'dashboard' ? (
+                <DashboardPage
+                    onGoHome={handleGoHome}
+                    onLogout={handleLogout}
+                    // Убраны: savedFiles и onFilesUpdate
+                    // DashboardPage теперь полностью автономен
+                />
+            ) : (
+                <>
+                    <HomePage />
+                    <BenefitsPage />
+                    <ReportsPage />
+                    <AudiencePage />
 
-            <div id="login-section">
-                <LoginPage />
-            </div>
+                    {/* Кнопка возврата в дашборд для авторизованных пользователей */}
+                    {isAuthenticated && (
+                        <div className="return-to-dashboard">
+                            <button
+                                onClick={handleGoToDashboard}
+                                className="return-button"
+                            >
+                                Вернуться к анализу
+                            </button>
+                        </div>
+                    )}
 
-            <footer className="app-footer">
-                <div className="footer-logo">
-                    <Logo />
-                </div>
-                <div className="footer-copyright">
-                    © 2025 ReviewAnalyzer
-                </div>
-            </footer>
+                    <div id="login-section">
+                        <LoginPage onLogin={handleLogin} />
+                    </div>
+
+                    <footer className="app-footer">
+                        <div className="footer-logo">
+                            <Logo />
+                        </div>
+                        <div className="footer-copyright">
+                            © 2025 ReviewAnalyzer
+                        </div>
+                    </footer>
+                </>
+            )}
         </>
     );
 }

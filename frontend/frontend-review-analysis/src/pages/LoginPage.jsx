@@ -2,7 +2,7 @@ import { useState } from "react";
 import '../styles/App.css';
 import '../styles/LoginPage.css';
 
-export default function LoginPage() {
+export default function LoginPage({ onLogin }) {
     const [name, setName] = useState("");
     const [address, setAddress] = useState("");
     const [error, setError] = useState("");
@@ -10,27 +10,28 @@ export default function LoginPage() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        if (!name.trim() || !address.trim()) {
+            setError("Заполните все поля");
+            return;
+        }
+
         setError("");
         setLoading(true);
 
-        try {
-            const response = await fetch("/api/auth", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ name, address }),
-            });
+        // Имитация сетевой задержки
+        await new Promise(resolve => setTimeout(resolve, 800));
 
-            if (!response.ok) {
-                throw new Error("Неверные данные или пользователь не найден");
-            }
+        console.log("Auth success (mocked)", { name, address });
 
-            const data = await response.json();
-            console.log("Auth success", data);
-        } catch (err) {
-            setError(err.message);
-        } finally {
-            setLoading(false);
-        }
+        localStorage.setItem('user', JSON.stringify({
+            name: name.trim(),
+            address: address.trim(),
+            timestamp: Date.now()
+        }));
+
+        onLogin?.();
+        setLoading(false);
     };
 
     return (
@@ -46,6 +47,7 @@ export default function LoginPage() {
                             value={name}
                             onChange={(e) => setName(e.target.value)}
                             required
+                            disabled={loading}
                         />
                     </div>
                     <div>
@@ -56,11 +58,12 @@ export default function LoginPage() {
                             value={address}
                             onChange={(e) => setAddress(e.target.value)}
                             required
+                            disabled={loading}
                         />
                     </div>
                     {error && <p className="login-error">{error}</p>}
                     <button type="submit" disabled={loading} className="login-button">
-                        {loading ? "Проверка..." : "Войти"}
+                        {loading ? "Вход..." : "Войти"}
                     </button>
                 </form>
             </div>
