@@ -1,5 +1,12 @@
 import React, { useState } from 'react';
 import '../styles/AudiencePage.css';
+import img1 from "../images/small_business.jpg";
+import img2 from "../images/marketplace.jpg";
+import img3 from "../images/restaurant.jpg";
+import img4 from "../images/service.jpg";
+import img5 from "../images/director.jpg";
+import img6 from "../images/branches.jpg";
+
 
 const AudiencePage = () => {
     const [activeIndex, setActiveIndex] = useState(0);
@@ -9,42 +16,42 @@ const AudiencePage = () => {
             id: 1,
             title: "Малый и средний бизнес",
             description: "Кофейни, магазины, салоны. Система показывает основные причины недовольства: сервис, качество, цены или скорость обслуживания.",
-            image: "/images/business-1.png",
+            image: img1,
             color: "blue-deep"
         },
         {
             id: 2,
             title: "Интернет магазины и маркетплейсы",
             description: "Автоматический анализ жалоб на доставку, упаковку, навигацию и качество товаров.",
-            image: "/images/business-2.png",
+            image: img2,
             color: "blue-main"
         },
         {
             id: 3,
             title: "Рестораны, кафе и службы доставки",
             description: "Выявление проблем с доставкой, температурой блюд, ошибками в заказах и работой персонала.",
-            image: "/images/business-3.png",
+            image: img3,
             color: "blue-deep"
         },
         {
             id: 4,
             title: "Сервисные компании",
             description: "СТО, клининг, ремонт. Быстрый обзор повторяющихся жалоб и точек, требующих внимания.",
-            image: "/images/business-4.png",
+            image: img4,
             color: "blue-main"
         },
         {
             id: 5,
             title: "Руководители",
             description: "Чёткая картина того, что именно пишут клиенты: ключевые темы, слова и причины низких оценок.",
-            image: "/images/business-5.png",
+            image: img5,
             color: "blue-deep"
         },
         {
             id: 6,
             title: "Филиалы и сети компаний",
             description: "Мониторинг отзывов по всем точкам сети, выявление проблемных локаций и общих тенденций для всей компании.",
-            image: "/images/business-6.png",
+            image: img6,
             color: "blue-main"
         }
     ];

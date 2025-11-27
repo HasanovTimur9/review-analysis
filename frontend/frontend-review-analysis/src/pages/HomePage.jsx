@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/App.css';
 import '../styles/HomePage.css';
+import img1 from "../images/columnar_diagram.png";
+import img2 from "../images/pie_chart.png";
 
-const carouselImages = [
-    '/images/screenshot-1.png',
-    '/images/screenshot-2.png',
-    '/images/screenshot-3.png',
-    '/images/screenshot-4.png',
-];
+const carouselImages = [img1, img2];
 
 const HomePage = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
