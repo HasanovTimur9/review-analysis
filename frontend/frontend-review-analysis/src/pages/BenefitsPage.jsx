@@ -99,7 +99,7 @@ const BenefitsPage = () => {
             {/* Секция "Как это работает" */}
             <section className="how-it-works-section">
                 <div className="container">
-                    <h2 className="section-title">КАК ЭТО РАБОТАЕТ</h2>
+                    <h2 className="section-title">Как это работает</h2>
 
                     <div className="steps-grid">
                         {steps.map((step, index) => (

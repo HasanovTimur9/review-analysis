@@ -47,7 +47,7 @@ const HomePage = () => {
                 <div className="hero-grid">
                     <div className="hero-content">
                         <h1 className="main-title">
-                            АНАЛИЗИРУЙ ТЫСЯЧИ ОТЗЫВОВ ЗА МИНУТЫ
+                            Анализируй тысячи отзывов за минуты
                         </h1>
                         <p className="subtitle">
                             <strong>Узнайте что на самом деле думают ваши клиенты — за 3 минуты и без аналитиков</strong>
