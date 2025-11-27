@@ -232,7 +232,7 @@
     box-shadow: 0 8px 20px rgba(234, 243, 178, 0.4);
 }
 
-/* Футер (если нужен) */
+/* Футер */
 .dashboard-footer {
     background: var(--color-brown);
     color: var(--color-beige);
@@ -244,10 +244,284 @@
     font-size: 1.2rem;
 }
 
-/* Адаптивность */
-@media (max-width: 768px) {
+/* Медиа-запросы для адаптивности */
+
+/* Планшеты (768px - 1024px) */
+@media (max-width: 1024px) {
     .dashboard-header {
-        padding: 15px 20px;
+        padding: 15px 30px;
+    }
+
+    .dashboard-container {
+        padding: 30px 20px;
+        max-width: 90%;
+    }
+
+    .dashboard-title {
+        font-size: 2.2rem;
+        margin-bottom: 15px;
+    }
+
+    .dashboard-subtitle {
+        font-size: 1.1rem;
+        margin-bottom: 50px;
+    }
+
+    .select-files-btn {
+        padding: 18px 35px;
+        font-size: 1.2rem;
+    }
+
+    .upload-area {
+        padding: 25px;
+        min-height: 380px;
+    }
+
+    .upload-area-inner {
+        padding: 35px 15px;
+        min-height: 300px;
+    }
+
+    .analyze-btn {
+        padding: 14px 35px;
+        font-size: 1.1rem;
+    }
+}
+
+/* Большие мобильные (481px - 767px) */
+@media (max-width: 767px) {
+    .dashboard-header {
+        padding: 12px 20px;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .header-logo {
+        order: 1;
+    }
+
+    .header-actions {
+        order: 2;
+        margin-left: auto;
+    }
+
+    .dashboard-container {
+        padding: 25px 15px;
+        max-width: 95%;
+    }
+
+    .dashboard-title {
+        font-size: 1.8rem;
+        margin-bottom: 12px;
+    }
+
+    .dashboard-subtitle {
+        font-size: 1rem;
+        margin-bottom: 40px;
+        line-height: 1.5;
+    }
+
+    .upload-section {
+        margin-bottom: 30px;
+    }
+
+    .select-files-btn {
+        padding: 16px 30px;
+        font-size: 1.1rem;
+        width: 100%;
+        max-width: 280px;
+    }
+
+    .upload-hint {
+        font-size: 0.9rem;
+        text-align: center;
+        padding: 0 10px;
+    }
+
+    .upload-area {
+        padding: 20px;
+        min-height: 350px;
+        border-radius: 14px;
+    }
+
+    .upload-area-inner {
+        padding: 30px 15px;
+        min-height: 280px;
+        border-radius: 10px;
+    }
+
+    .file-item {
+        padding: 10px 0;
+        gap: 10px;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .file-info {
+        width: 100%;
+    }
+
+    .delete-file-btn {
+        align-self: flex-end;
+        margin-top: 5px;
+    }
+
+    .add-more-btn {
+        top: -12px;
+        right: -12px;
+        width: 35px;
+        height: 35px;
+    }
+
+    .analyze-btn {
+        padding: 14px 30px;
+        font-size: 1.1rem;
+        width: 100%;
+        max-width: 280px;
+    }
+
+    .dashboard-footer {
+        padding: 30px 15px;
+    }
+
+    .dashboard-footer .footer-copyright {
+        font-size: 1rem;
+    }
+}
+
+/* Мобильные (320px - 480px) */
+@media (max-width: 480px) {
+    .dashboard-header {
+        padding: 10px 15px;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .header-logo {
+        order: 1;
+        align-self: center;
+    }
+
+    .header-actions {
+        order: 2;
+        margin-left: 0;
+        align-self: center;
+    }
+
+    .dashboard-container {
+        padding: 20px 12px;
+    }
+
+    .dashboard-title {
+        font-size: 1.6rem;
+        margin-bottom: 10px;
+    }
+
+    .dashboard-subtitle {
+        font-size: 0.95rem;
+        margin-bottom: 30px;
+        line-height: 1.4;
+    }
+
+    .select-files-btn {
+        padding: 14px 25px;
+        font-size: 1rem;
+        max-width: 250px;
+    }
+
+    .upload-hint {
+        font-size: 0.85rem;
+    }
+
+    .upload-area {
+        padding: 15px;
+        min-height: 320px;
+        border-radius: 12px;
+    }
+
+    .upload-area-inner {
+        padding: 25px 12px;
+        min-height: 250px;
+        border-radius: 8px;
+    }
+
+    .file-name {
+        font-size: 0.95rem;
+    }
+
+    .file-size {
+        font-size: 0.8rem;
+    }
+
+    .add-more-btn {
+        top: -10px;
+        right: -10px;
+        width: 32px;
+        height: 32px;
+    }
+
+    .analyze-btn {
+        padding: 12px 25px;
+        font-size: 1rem;
+        max-width: 250px;
+        margin-top: 15px;
+    }
+
+    .dashboard-footer {
+        padding: 25px 12px;
+    }
+
+    .dashboard-footer .footer-copyright {
+        font-size: 0.9rem;
+    }
+}
+
+/* Очень маленькие экраны (до 320px) */
+@media (max-width: 320px) {
+    .dashboard-header {
+        padding: 8px 12px;
+    }
+
+    .dashboard-container {
+        padding: 15px 10px;
+    }
+
+    .dashboard-title {
+        font-size: 1.4rem;
+    }
+
+    .dashboard-subtitle {
+        font-size: 0.9rem;
+        margin-bottom: 25px;
+    }
+
+    .select-files-btn {
+        padding: 12px 20px;
+        font-size: 0.95rem;
+        max-width: 220px;
+    }
+
+    .upload-area {
+        padding: 12px;
+        min-height: 300px;
+    }
+
+    .upload-area-inner {
+        padding: 20px 10px;
+        min-height: 230px;
+    }
+
+    .analyze-btn {
+        padding: 12px 20px;
+        font-size: 0.95rem;
+        max-width: 220px;
+    }
+}
+
+/* Landscape ориентация на мобильных */
+@media (max-height: 500px) and (orientation: landscape) {
+    .dashboard-header {
+        padding: 10px 20px;
     }
 
     .dashboard-container {
@@ -255,39 +529,65 @@
     }
 
     .dashboard-title {
-        font-size: 2rem;
+        font-size: 1.5rem;
+        margin-bottom: 10px;
     }
 
     .dashboard-subtitle {
-        font-size: 1.1rem;
-        margin-bottom: 40px;
+        font-size: 0.9rem;
+        margin-bottom: 20px;
     }
 
     .upload-area {
-        padding: 20px;
+        min-height: 250px;
     }
 
     .upload-area-inner {
-        padding: 30px 15px;
-    }
-
-    .select-files-btn {
-        padding: 16px 32px;
-        font-size: 1.1rem;
+        min-height: 200px;
+        padding: 20px 15px;
     }
 
     .file-item {
-        gap: 10px;
+        padding: 8px 0;
+    }
+}
+
+/* Отключение hover-эффектов на touch-устройствах */
+@media (hover: none) and (pointer: coarse) {
+    .home-button:hover,
+    .logout-button:hover,
+    .select-files-btn:hover,
+    .delete-file-btn:hover,
+    .add-more-btn:hover,
+    .analyze-btn:hover {
+        transform: none;
+        background: none;
     }
 
-    .file-name {
-        font-size: 0.95rem;
+    .select-files-btn:hover,
+    .analyze-btn:hover {
+        box-shadow: none;
     }
 
-    .add-more-btn {
-        width: 36px;
-        height: 36px;
-        top: -12px;
-        right: -12px;
+    .delete-file-btn:hover {
+        background: none;
+        color: var(--color-brown);
+        opacity: 0.6;
+    }
+}
+
+/* Поддержка высокопиксельных экранов */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .dashboard-page {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+}
+
+/* Улучшение доступности для больших текстов */
+@media (prefers-reduced-motion: reduce) {
+    .dashboard-page * {
+        transition: none !important;
+        animation: none !important;
     }
 }

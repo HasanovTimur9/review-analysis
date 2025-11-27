@@ -129,22 +129,133 @@ html, body {
     text-align: right;
 }
 
-/* Адаптивность футера */
-@media (max-width: 768px) {
-    .app-footer {
-        padding: 60px 20px;
-        flex-direction: column;
-        gap: 30px;
-        text-align: center;
+/* Медиа-запросы для адаптивности */
+
+/* Планшеты (768px - 1024px) */
+@media (max-width: 1024px) {
+    .return-to-dashboard {
+        padding: 30px 15px;
     }
 
-    .footer-copyright {
-        text-align: center;
+    .return-button {
+        padding: 10px 20px;
         font-size: 1rem;
+    }
+
+    .app-footer {
+        padding: 30px;
     }
 
     .footer-logo svg {
         width: 50px;
         height: 50px;
+    }
+
+    .footer-copyright {
+        font-size: 1.3rem;
+    }
+}
+
+/* Большие мобильные (481px - 767px) */
+@media (max-width: 767px) {
+    .return-to-dashboard {
+        padding: 25px 15px;
+    }
+
+    .return-button {
+        padding: 10px 18px;
+        font-size: 0.95rem;
+        width: 100%;
+        max-width: 280px;
+    }
+
+    .app-footer {
+        padding: 25px 20px;
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+
+    .footer-logo svg {
+        width: 45px;
+        height: 45px;
+    }
+
+    .footer-copyright {
+        font-size: 1.1rem;
+        text-align: center;
+        order: -1; /* Перемещаем copyright вверх */
+    }
+}
+
+/* Мобильные (320px - 480px) */
+@media (max-width: 480px) {
+    .return-to-dashboard {
+        padding: 20px 10px;
+    }
+
+    .return-button {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+        max-width: 250px;
+    }
+
+    .app-footer {
+        padding: 20px 15px;
+        gap: 12px;
+    }
+
+    .footer-logo svg {
+        width: 40px;
+        height: 40px;
+    }
+
+    .footer-copyright {
+        font-size: 1rem;
+    }
+}
+
+/* Очень маленькие экраны (до 320px) */
+@media (max-width: 320px) {
+    .return-to-dashboard {
+        padding: 15px 8px;
+    }
+
+    .return-button {
+        padding: 6px 12px;
+        font-size: 0.85rem;
+        max-width: 220px;
+    }
+
+    .app-footer {
+        padding: 15px 10px;
+    }
+
+    .footer-logo svg {
+        width: 35px;
+        height: 35px;
+    }
+
+    .footer-copyright {
+        font-size: 0.9rem;
+    }
+}
+
+/* Поддержка landscape ориентации на мобильных */
+@media (max-height: 500px) and (orientation: landscape) {
+    .return-to-dashboard {
+        padding: 20px 15px;
+    }
+
+    .app-footer {
+        padding: 25px 20px;
+    }
+}
+
+/* Высокопиксельные экраны (Retina) */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .return-button {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
     }
 }

@@ -143,34 +143,107 @@
     transform: scale(1.1);
 }
 
-/* Адаптивность */
-@media (max-width: 768px) {
+/* Медиа-запросы для адаптивности */
+
+/* Планшеты (768px - 1024px) */
+@media (max-width: 1024px) {
     .reports-page {
-        padding: 80px 0;
+        padding: 40px 0;
     }
 
-    .section-title {
-        font-size: 2.2rem;
+    .section-report-title {
+        font-size: 2.5rem;
+        margin-bottom: 15px;
     }
 
     .section-subtitle {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
         margin-bottom: 60px;
+    }
+
+    .reports-carousel {
+        gap: 35px;
+    }
+
+    .report-box {
+        width: 450px;
+        height: 450px;
+        border-radius: 20px;
+        padding: 35px;
+    }
+
+    .report-title {
+        font-size: 1.6rem;
+        margin-bottom: 25px;
+    }
+
+    .report-description {
+        font-size: 1.2rem;
+        max-width: 350px;
+    }
+
+    .carousel-controls {
+        gap: 25px;
+    }
+
+    .carousel-arrow {
+        width: 45px;
+        height: 45px;
+    }
+}
+
+/* Большие мобильные (481px - 767px) */
+@media (max-width: 767px) {
+    .reports-page {
+        padding: 30px 0;
+    }
+
+    .container {
+        padding: 0 15px;
+    }
+
+    .section-report-title {
+        font-size: 2rem;
+        margin-bottom: 12px;
+    }
+
+    .section-subtitle {
+        font-size: 1.1rem;
+        margin-bottom: 40px;
+        line-height: 1.4;
+    }
+
+    .reports-carousel {
+        gap: 30px;
     }
 
     .report-box {
         width: 100%;
         max-width: 400px;
-        height: 400px;
-        padding: 30px;
+        height: auto;
+        min-height: 400px;
+        border-radius: 18px;
+        padding: 30px 25px;
+    }
+
+    .report-content.title-image {
+        justify-content: center;
+        gap: 25px;
+    }
+
+    .report-content.image-description {
+        gap: 25px;
     }
 
     .report-title {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
+        margin-bottom: 20px;
     }
 
     .report-description {
         font-size: 1.1rem;
+        line-height: 1.4;
+        max-width: 100%;
     }
 
     .carousel-controls {
@@ -181,19 +254,194 @@
         width: 40px;
         height: 40px;
     }
+
+    .report-image {
+        max-width: 90%;
+    }
 }
 
+/* Мобильные (320px - 480px) */
 @media (max-width: 480px) {
+    .reports-page {
+        padding: 20px 0;
+    }
+
+    .container {
+        padding: 0 12px;
+    }
+
+    .section-report-title {
+        font-size: 1.7rem;
+        margin-bottom: 10px;
+    }
+
+    .section-subtitle {
+        font-size: 1rem;
+        margin-bottom: 30px;
+        line-height: 1.3;
+    }
+
+    .reports-carousel {
+        gap: 25px;
+    }
+
     .report-box {
-        height: 350px;
-        padding: 20px;
+        max-width: 100%;
+        min-height: 350px;
+        border-radius: 16px;
+        padding: 25px 20px;
+        border-width: 1.5px;
+    }
+
+    .report-content.title-image,
+    .report-content.image-description {
+        gap: 20px;
     }
 
     .report-title {
-        font-size: 1.3rem;
+        font-size: 1.2rem;
+        margin-bottom: 15px;
     }
 
     .report-description {
         font-size: 1rem;
+        line-height: 1.3;
+    }
+
+    .carousel-controls {
+        gap: 15px;
+    }
+
+    .carousel-arrow {
+        width: 35px;
+        height: 35px;
+    }
+
+    .report-image {
+        max-width: 85%;
+        border-radius: 8px;
+    }
+}
+
+/* Очень маленькие экраны (до 320px) */
+@media (max-width: 320px) {
+    .reports-page {
+        padding: 15px 0;
+    }
+
+    .container {
+        padding: 0 10px;
+    }
+
+    .section-report-title {
+        font-size: 1.5rem;
+    }
+
+    .section-subtitle {
+        font-size: 0.9rem;
+        margin-bottom: 25px;
+    }
+
+    .report-box {
+        min-height: 300px;
+        padding: 20px 15px;
+        border-radius: 14px;
+    }
+
+    .report-title {
+        font-size: 1.1rem;
+        margin-bottom: 12px;
+    }
+
+    .report-description {
+        font-size: 0.9rem;
+    }
+
+    .carousel-arrow {
+        width: 32px;
+        height: 32px;
+    }
+
+    .report-image {
+        max-width: 80%;
+    }
+}
+
+/* Landscape ориентация на мобильных */
+@media (max-height: 500px) and (orientation: landscape) {
+    .reports-page {
+        padding: 20px 0;
+        min-height: auto;
+    }
+
+    .section-subtitle {
+        margin-bottom: 30px;
+    }
+
+    .report-box {
+        min-height: 280px;
+        padding: 20px;
+    }
+
+    .report-content.title-image,
+    .report-content.image-description {
+        gap: 15px;
+    }
+
+    .report-title {
+        margin-bottom: 15px;
+        font-size: 1.2rem;
+    }
+
+    .report-description {
+        font-size: 0.9rem;
+    }
+}
+
+/* Отключение hover-эффектов на touch-устройствах */
+@media (hover: none) and (pointer: coarse) {
+    .carousel-arrow:hover {
+        transform: none;
+        background: var(--color-white);
+    }
+
+    .carousel-arrow:active {
+        background: var(--color-blue-main);
+        transform: scale(0.95);
+    }
+}
+
+/* Улучшение доступности для больших текстов */
+@media (prefers-reduced-motion: reduce) {
+    .carousel-arrow {
+        transition: none;
+    }
+
+    .carousel-arrow:hover {
+        transform: none;
+    }
+}
+
+/* Оптимизация для очень широких экранов */
+@media (min-width: 1400px) {
+    .container {
+        max-width: 1300px;
+    }
+
+    .report-box {
+        width: 550px;
+        height: 550px;
+    }
+}
+
+/* Поддержка складывающихся устройств */
+@media (max-width: 767px) and (max-height: 500px) {
+    .reports-page {
+        padding: 15px 0;
+    }
+
+    .report-box {
+        min-height: 250px;
+        padding: 20px 15px;
     }
 }

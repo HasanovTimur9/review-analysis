@@ -127,3 +127,273 @@ label {
     font-weight: 500;
     transition: background-color 0.2s;
 }
+
+/* Медиа-запросы для адаптивности */
+
+/* Планшеты (768px - 1024px) */
+@media (max-width: 1024px) {
+    .login-title,
+    h1 {
+        font-size: 2.8rem;
+        margin-bottom: 1.8rem;
+    }
+
+    .login-box {
+        max-width: 380px;
+        padding: 2.5rem 2rem;
+        border-radius: 20px;
+        margin: 0 20px;
+    }
+
+    .login-title {
+        font-size: 1.8rem;
+        margin-bottom: 1.3rem;
+    }
+
+    .login-label,
+    label {
+        font-size: 1rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .login-input {
+        padding: 0.45rem;
+        margin-bottom: 0.9rem;
+    }
+}
+
+/* Большие мобильные (481px - 767px) */
+@media (max-width: 767px) {
+    .login-container {
+        padding: 20px;
+        align-items: flex-start;
+        min-height: 100vh;
+    }
+
+    .login-title,
+    h1 {
+        font-size: 2.4rem;
+        margin-bottom: 1.5rem;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+    }
+
+    .login-box {
+        max-width: 100%;
+        padding: 2rem 1.5rem;
+        border-radius: 18px;
+        margin: 40px 0;
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+    }
+
+    .login-title {
+        font-size: 1.6rem;
+        margin-bottom: 1.2rem;
+    }
+
+    .login-label,
+    label {
+        font-size: 0.95rem;
+        margin-bottom: 0.45rem;
+    }
+
+    .login-input {
+        width: 94%;
+        padding: 0.4rem;
+        margin-bottom: 0.8rem;
+        border-radius: 0.6rem;
+    }
+
+    .login-button {
+        padding: 0.45rem;
+        border-radius: 0.6rem;
+    }
+
+    .login-error {
+        font-size: 0.8rem;
+        margin-bottom: 0.8rem;
+    }
+
+    /* Упрощаем тени для мобильных */
+    .login-box {
+        box-shadow:
+                0 -1px 0 rgba(255, 255, 255, 0.3) inset,
+                0 1px 0 rgba(255, 255, 255, 0.3) inset,
+                0 8px 15px rgba(0, 0, 0, 0.3),
+                0 15px 30px rgba(0, 0, 0, 0.35);
+    }
+}
+
+/* Мобильные (320px - 480px) */
+@media (max-width: 480px) {
+    .login-container {
+        padding: 15px;
+    }
+
+    .login-title,
+    h1 {
+        font-size: 2rem;
+        margin-bottom: 1.2rem;
+    }
+
+    .login-box {
+        padding: 1.8rem 1.2rem;
+        border-radius: 16px;
+        margin: 295px 0;
+    }
+
+    .login-title {
+        font-size: 1.4rem;
+        margin-bottom: 1rem;
+    }
+
+    .login-label,
+    label {
+        font-size: 0.9rem;
+        margin-bottom: 0.4rem;
+    }
+
+    .login-input {
+        width: 93%;
+        padding: 0.35rem;
+        margin-bottom: 0.7rem;
+        border-radius: 0.5rem;
+    }
+
+    .login-button {
+        padding: 0.4rem;
+        border-radius: 0.5rem;
+        font-size: 0.9rem;
+    }
+
+    .login-error {
+        font-size: 0.75rem;
+        margin-bottom: 0.7rem;
+    }
+
+    .login-box::before,
+    .login-box::after {
+        left: 8px;
+        right: 8px;
+    }
+}
+
+/* Очень маленькие экраны (до 320px) */
+@media (max-width: 320px) {
+    .login-container {
+        padding: 10px;
+    }
+
+    .login-title,
+    h1 {
+        font-size: 1.7rem;
+        margin-bottom: 1rem;
+    }
+
+    .login-box {
+        padding: 1.5rem 1rem;
+        border-radius: 14px;
+    }
+
+    .login-title {
+        font-size: 1.3rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .login-label,
+    label {
+        font-size: 0.85rem;
+        margin-bottom: 0.35rem;
+    }
+
+    .login-input {
+        width: 92%;
+        padding: 0.3rem;
+        margin-bottom: 0.6rem;
+    }
+
+    .login-button {
+        padding: 0.35rem;
+        font-size: 0.85rem;
+    }
+}
+
+/* Landscape ориентация на мобильных */
+@media (max-height: 500px) and (orientation: landscape) {
+    .login-container {
+        padding: 10px;
+        align-items: flex-start;
+        min-height: auto;
+    }
+
+    .login-box {
+        margin: 10px 0;
+        padding: 1.5rem 1.5rem;
+        max-width: 400px;
+    }
+
+    .login-title,
+    h1 {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+    }
+
+    .login-title {
+        font-size: 1.3rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .login-input {
+        padding: 0.3rem;
+        margin-bottom: 0.6rem;
+    }
+
+    .login-button {
+        padding: 0.3rem;
+    }
+}
+
+/* Поддержка высокопиксельных экранов */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .login-box {
+        -webkit-backdrop-filter: blur(25px);
+        backdrop-filter: blur(25px);
+    }
+}
+
+/* Улучшение доступности для больших текстов */
+@media (prefers-reduced-motion: reduce) {
+    .login-button {
+        transition: none;
+    }
+}
+
+/* Оптимизация для очень высоких экранов */
+@media (min-height: 1200px) {
+    .login-container {
+        padding: 40px 20px;
+    }
+
+    .login-box {
+        margin: 80px 0;
+    }
+}
+
+/* Поддержка темной темы */
+@media (prefers-color-scheme: dark) {
+    .login-input {
+        background: rgba(255, 255, 255, 0.9);
+        color: #000;
+    }
+
+    .login-input::placeholder {
+        color: rgba(0, 0, 0, 0.6);
+    }
+}
+
+/* Отключение backdrop-filter для старых браузеров */
+@supports not (backdrop-filter: blur(20px)) {
+    .login-box {
+        background: rgba(255, 255, 255, 0.1);
+    }
+}

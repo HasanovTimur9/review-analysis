@@ -164,78 +164,131 @@
     visibility: hidden;
 }
 
-/* Адаптивность */
+/* Планшеты (768px - 1024px) */
 @media (max-width: 1024px) {
+    .section-title {
+        font-size: 2.5rem;
+        margin-bottom: 15px;
+    }
+
+    .section-subtitle {
+        font-size: 1.3rem;
+        margin-bottom: 60px;
+        max-width: 700px;
+    }
+
     .horizontal-accordion {
+        height: 500px;
+        gap: 15px;
+    }
+
+    .accordion-item {
+        flex: 0 0 70px;
+        border-radius: 35px;
+        padding: 25px 15px;
+        min-height: 350px;
+    }
+
+    .accordion-item.active {
+        padding: 35px 25px;
+    }
+
+    .accordion-title {
+        font-size: 1.2rem;
+    }
+
+    .accordion-item.active .accordion-title {
+        font-size: 1.6rem;
+        margin-bottom: 25px;
+    }
+
+    .accordion-image {
+        max-height: 180px;
+    }
+
+    .accordion-description {
+        font-size: 1rem;
+    }
+
+    .accordion-number {
+        width: 35px;
+        height: 35px;
+        font-size: 1.1rem;
+        bottom: 15px;
+    }
+}
+
+/* Большие мобильные (481px - 767px) */
+@media (max-width: 767px) {
+    .audience-page {
+        padding: 5px 0;
+    }
+
+    .container {
+        padding: 0 15px;
+    }
+
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 10px;
+    }
+
+    .section-subtitle {
+        font-size: 1.1rem;
+        margin-bottom: 40px;
+        max-width: 100%;
+        padding: 0 10px;
+    }
+
+    .horizontal-accordion {
+        height: auto;
         flex-direction: column;
-        min-height: auto;
         gap: 15px;
     }
 
     .accordion-item {
         flex: 1;
         min-height: 80px;
-        padding: 20px;
+        height: auto;
+        padding: 20px 15px;
+        border-radius: 25px;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
     }
 
     .accordion-item.active {
-        min-height: 400px;
-        padding: 30px;
+        flex: 1;
+        min-height: 300px;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 25px 20px;
+    }
+
+    .accordion-content {
+        width: 100%;
     }
 
     .accordion-title {
         writing-mode: horizontal-tb;
         transform: none;
-        font-size: 1.2rem;
-    }
-
-    .accordion-item.active .accordion-title {
-        font-size: 1.5rem;
-    }
-
-    .accordion-number {
-        bottom: 15px;
-        width: 35px;
-        height: 35px;
-        font-size: 1rem;
-    }
-}
-
-@media (max-width: 768px) {
-    .audience-page {
-        padding: 80px 0;
-    }
-
-    .section-title {
-        font-size: 2.2rem;
-    }
-
-    .section-subtitle {
-        font-size: 1.2rem;
-        margin-bottom: 60px;
-    }
-
-    .accordion-item.active {
-        min-height: 350px;
-    }
-
-    .accordion-title {
+        margin-bottom: 0;
+        height: auto;
+        justify-content: flex-start;
         font-size: 1.1rem;
+        text-align: left;
+        display: flex;
+        align-items: center;
     }
 
     .accordion-item.active .accordion-title {
-        font-size: 1.3rem;
+        font-size: 1.4rem;
+        margin-bottom: 20px;
+        text-align: left;
     }
 
-    .accordion-description {
-        font-size: 1rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .accordion-item.active {
-        min-height: 300px;
-        padding: 20px;
+    .accordion-expanded {
+        width: 100%;
     }
 
     .accordion-image-container {
@@ -245,5 +298,146 @@
 
     .accordion-image {
         max-height: 150px;
+    }
+
+    .accordion-description {
+        font-size: 0.95rem;
+        margin-top: 15px;
+        text-align: left;
+    }
+
+    .accordion-number {
+        position: relative;
+        bottom: auto;
+        left: auto;
+        transform: none;
+        width: 30px;
+        height: 30px;
+        font-size: 1rem;
+        margin-left: 10px;
+    }
+
+    .accordion-item.active .accordion-number {
+        display: none;
+    }
+}
+
+/* Мобильные (320px - 480px) */
+@media (max-width: 480px) {
+    .section-title {
+        font-size: 1.7rem;
+    }
+
+    .section-subtitle {
+        font-size: 1rem;
+        margin-bottom: 30px;
+        line-height: 1.5;
+    }
+
+    .horizontal-accordion {
+        gap: 12px;
+    }
+
+    .accordion-item {
+        min-height: 70px;
+        padding: 15px 12px;
+        border-radius: 20px;
+    }
+
+    .accordion-item.active {
+        min-height: 250px;
+        padding: 20px 15px;
+    }
+
+    .accordion-title {
+        font-size: 1rem;
+    }
+
+    .accordion-item.active .accordion-title {
+        font-size: 1.2rem;
+        margin-bottom: 15px;
+    }
+
+    .accordion-image-container {
+        margin: 10px 0;
+    }
+
+    .accordion-image {
+        max-height: 120px;
+    }
+
+    .accordion-description {
+        font-size: 0.9rem;
+        line-height: 1.5;
+        margin-top: 12px;
+    }
+
+    .accordion-number {
+        width: 25px;
+        height: 25px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Очень маленькие экраны (до 320px) */
+@media (max-width: 320px) {
+    .container {
+        padding: 0 10px;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+    }
+
+    .section-subtitle {
+        font-size: 0.9rem;
+        margin-bottom: 25px;
+    }
+
+    .accordion-item {
+        padding: 12px 10px;
+        border-radius: 18px;
+    }
+
+    .accordion-item.active {
+        padding: 18px 12px;
+    }
+
+    .accordion-title {
+        font-size: 0.9rem;
+    }
+
+    .accordion-item.active .accordion-title {
+        font-size: 1.1rem;
+    }
+
+    .accordion-image {
+        max-height: 100px;
+    }
+
+    .accordion-description {
+        font-size: 0.85rem;
+    }
+}
+
+/* Landscape ориентация на мобильных */
+@media (max-height: 500px) and (orientation: landscape) {
+    .horizontal-accordion {
+        height: 350px;
+    }
+
+    .accordion-item {
+        min-height: 300px;
+    }
+
+    .accordion-image {
+        max-height: 120px;
+    }
+}
+
+/* Поддержка touch-устройств */
+@media (hover: none) and (pointer: coarse) {
+    .accordion-item {
+        cursor: default;
     }
 }

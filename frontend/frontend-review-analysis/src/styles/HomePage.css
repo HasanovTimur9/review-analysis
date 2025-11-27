@@ -132,56 +132,311 @@
     box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
 }
 
-/* Адаптивность */
+/* Медиа-запросы для адаптивности */
+
+/* Большие планшеты (1025px - 1200px) */
+@media (max-width: 1200px) {
+    .hero-grid {
+        gap: 80px;
+        max-width: 1200px;
+    }
+
+    .content-box {
+        padding: 80px;
+        max-width: 1200px;
+    }
+
+    .main-title {
+        font-size: 55px;
+    }
+
+    .subtitle {
+        font-size: 22px;
+        margin-bottom: 35px;
+    }
+
+    .try-button {
+        padding: 15px 30px;
+        font-size: 22px;
+    }
+
+    .carousel-container {
+        height: 480px;
+    }
+
+    .arrow {
+        font-size: 22px;
+    }
+}
+
+/* Планшеты (768px - 1024px) */
 @media (max-width: 1024px) {
     .hero-grid {
         grid-template-columns: 1fr;
         gap: 60px;
-        text-align: center;
-        max-width: 100%;
+        max-width: 900px;
     }
 
-    .hero-content {
-        padding-right: 0;
+    .content-box {
+        padding: 60px 40px;
+        max-width: 900px;
+        border-radius: 20px;
     }
 
     .main-title {
-        font-size: 52px;
+        font-size: 45px;
+        text-align: center;
+    }
+
+    .subtitle {
+        font-size: 20px;
+        text-align: center;
+        margin-bottom: 35px;
+        line-height: 1.5;
+    }
+
+    .try-button {
+        padding: 14px 28px;
+        font-size: 20px;
+        margin: 0 auto;
+        display: inline-flex;
     }
 
     .carousel-container {
         height: 400px;
-        max-width: 500px;
-        margin: 0 auto;
+        border-radius: 20px;
+        order: -1; /* Карусель сверху на планшетах */
     }
 
-    .content-box {
-        width: 94vw;
-        padding: 60px 30px;
-        min-height: 90vh;
+    .arrow {
+        font-size: 20px;
+    }
+
+    .carousel-container .carousel-dots {
+        bottom: 20px;
     }
 }
 
-@media (max-width: 640px) {
+/* Большие мобильные (481px - 767px) */
+@media (max-width: 767px) {
+    .page-container {
+        min-height: auto;
+        padding: 40px 0;
+        align-items: flex-start;
+    }
+
+    .hero-grid {
+        gap: 50px;
+        max-width: 100%;
+    }
+
     .content-box {
-        padding: 40px 20px;
-        margin: 15px;
+        padding: 50px 30px;
+        margin: 0 20px;
+        border-radius: 18px;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
     }
 
     .main-title {
         font-size: 36px;
+        line-height: 1.2;
+    }
+
+    .subtitle {
+        font-size: 18px;
+        margin-bottom: 30px;
+        line-height: 1.4;
+    }
+
+    .try-button {
+        padding: 12px 24px;
+        font-size: 18px;
+        gap: 10px;
+        border-radius: 10px;
+        width: 100%;
+        max-width: 280px;
+        justify-content: center;
     }
 
     .carousel-container {
-        height: 300px;
+        height: 350px;
+        border-radius: 18px;
+        margin: 0 20px;
+    }
+
+    .arrow {
+        font-size: 18px;
+    }
+
+    .carousel-container .carousel-dots {
+        bottom: 18px;
+        gap: 10px;
+    }
+
+    .carousel-container .dot {
+        width: 10px;
+        height: 10px;
+    }
+}
+
+/* Мобильные (320px - 480px) */
+@media (max-width: 480px) {
+    .page-container {
+        padding: 30px 0;
     }
 
     .hero-grid {
         gap: 40px;
     }
 
+    .content-box {
+        padding: 40px 25px;
+        margin: 0 15px;
+        border-radius: 16px;
+    }
+
+    .main-title {
+        font-size: 28px;
+        line-height: 1.3;
+    }
+
+    .subtitle {
+        font-size: 16px;
+        margin-bottom: 25px;
+        line-height: 1.4;
+    }
+
+    .try-button {
+        padding: 10px 20px;
+        font-size: 16px;
+        gap: 8px;
+        border-radius: 8px;
+        max-width: 250px;
+        transform: translateX(75px);
+    }
+
+    .carousel-container {
+        height: 280px;
+        border-radius: 16px;
+        margin: 0;
+    }
+
+    .arrow {
+        font-size: 16px;
+    }
+
+    .carousel-container .carousel-dots {
+        bottom: 15px;
+        gap: 8px;
+    }
+
+    .carousel-container .dot {
+        width: 8px;
+        height: 8px;
+    }
+
+    .carousel-container .dot.active {
+        transform: scale(1.2);
+    }
+}
+
+/* Очень маленькие экраны (до 320px) */
+@media (max-width: 320px) {
     .page-container {
-        align-items: flex-start;
-        padding-top: 20px;
+        padding: 20px 0;
+    }
+
+    .content-box {
+        padding: 30px 20px;
+        margin: 0 10px;
+        border-radius: 14px;
+    }
+
+    .main-title {
+        font-size: 24px;
+    }
+
+    .subtitle {
+        font-size: 15px;
+        margin-bottom: 20px;
+    }
+
+    .try-button {
+        padding: 8px 16px;
+        font-size: 15px;
+        max-width: 220px;
+    }
+
+    .carousel-container {
+        height: 240px;
+        border-radius: 14px;
+        margin: 0 10px;
+    }
+
+    .carousel-container .carousel-dots {
+        bottom: 12px;
+    }
+}
+
+/* Landscape ориентация на мобильных */
+@media (max-height: 500px) and (orientation: landscape) {
+    .page-container {
+        min-height: auto;
+        padding: 30px 0;
+    }
+
+    .content-box {
+        padding: 40px 30px;
+    }
+
+    .main-title {
+        font-size: 32px;
+    }
+
+    .subtitle {
+        font-size: 16px;
+        margin-bottom: 20px;
+    }
+
+    .carousel-container {
+        height: 250px;
+    }
+
+    .try-button {
+        padding: 10px 20px;
+        font-size: 16px;
+    }
+}
+
+/* Отключение hover-эффектов на touch-устройствах */
+@media (hover: none) and (pointer: coarse) {
+    .try-button:hover {
+        transform: none;
+        background: var(--color-blue-main);
+        color: var(--color-brown);
+    }
+
+    .try-button:hover .arrow {
+        transform: none;
+    }
+}
+
+/* Улучшение доступности для больших текстов */
+@media (prefers-reduced-motion: reduce) {
+    .carousel-track {
+        transition: none;
+    }
+
+    .try-button,
+    .arrow {
+        transition: none;
+    }
+
+    .try-button:hover {
+        transform: none;
+    }
+
+    .try-button:hover .arrow {
+        transform: none;
     }
 }

@@ -148,37 +148,323 @@
     translate: 0 100px;
 }
 
-/* Адаптивность */
+/* Медиа-запросы для адаптивности */
+
+/* Планшеты (768px - 1024px) */
 @media (max-width: 1024px) {
-    .benefits-circles {
-        grid-template-columns: 1fr;
-        gap: 50px;
+    .container {
+        padding: 0 30px;
     }
 
-    .steps-grid {
-        grid-template-columns: 1fr;
-        gap: 30px;
+    .benefits-section {
+        padding: 50px 0 0;
     }
 
-    .benefits-section,
-    .how-it-works-section {
-        padding: 80px 0;
-    }
-}
-
-@media (max-width: 768px) {
     .section-title {
-        font-size: 2.2rem;
-        margin-bottom: 50px;
+        font-size: 2.5rem;
+        margin-bottom: 60px;
+    }
+
+    .benefits-circles {
+        gap: 40px;
+        padding: 50px 0;
     }
 
     .circle {
         width: 70px;
         height: 70px;
+        font-size: 1.8rem;
+        margin-bottom: 25px;
+    }
+
+    .benefit-title {
         font-size: 1.7rem;
+        margin-bottom: 12px;
+    }
+
+    .benefit-description {
+        font-size: 1.1rem;
+        line-height: 1.5;
+    }
+
+    .how-it-works-section {
+        padding: 80px 0;
+    }
+
+    .steps-grid {
+        gap: 30px;
+        margin-top: 50px;
     }
 
     .step-card {
-        padding: 30px 20px;
+        padding: 20px 20px;
+        border-radius: 18px;
+    }
+
+    .step-icon {
+        width: 45px;
+        height: 45px;
+        top: 15px;
+        right: 15px;
+    }
+
+    .step-title {
+        font-size: 1.7rem;
+        translate: 0 80px;
+    }
+
+    .step-description {
+        font-size: 1.1rem;
+        translate: 0 80px;
+    }
+}
+
+/* Большие мобильные (481px - 767px) */
+@media (max-width: 767px) {
+    .container {
+        padding: 0 20px;
+    }
+
+    .benefits-section {
+        padding: 40px 0 0;
+    }
+
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 40px;
+    }
+
+    .benefits-circles {
+        grid-template-columns: 1fr;
+        gap: 50px;
+        padding: 40px 0;
+    }
+
+    .circle-container {
+        flex-direction: row;
+        text-align: left;
+        align-items: flex-start;
+        gap: 25px;
+    }
+
+    .circle {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+        margin-bottom: 0;
+        flex-shrink: 0;
+    }
+
+    .benefit-content {
+        max-width: 100%;
+    }
+
+    .benefit-title {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+    }
+
+    .benefit-description {
+        font-size: 1rem;
+        line-height: 1.5;
+    }
+
+    .how-it-works-section {
+        padding: 60px 0;
+    }
+
+    .steps-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        margin-top: 40px;
+    }
+
+    .step-card {
+        aspect-ratio: auto;
+        min-height: 200px;
+        padding: 25px 20px;
+        border-radius: 16px;
+    }
+
+    .step-icon {
+        width: 40px;
+        height: 40px;
+        top: 20px;
+        right: 20px;
+    }
+
+    .step-title {
+        font-size: 1.5rem;
+        translate: 0 0;
+        margin-bottom: 15px;
+    }
+
+    .step-description {
+        font-size: 1rem;
+        translate: 0 0;
+        line-height: 1.5;
+    }
+}
+
+/* Мобильные (320px - 480px) */
+@media (max-width: 480px) {
+    .container {
+        padding: 0 15px;
+    }
+
+    .benefits-section {
+        padding: 30px 0 0;
+    }
+
+    .section-title {
+        font-size: 1.7rem;
+        margin-bottom: 30px;
+    }
+
+    .benefits-circles {
+        gap: 35px;
+        padding: 30px 0;
+    }
+
+    .circle-container {
+        gap: 20px;
+    }
+
+    .circle {
+        width: 50px;
+        height: 50px;
+        font-size: 1.3rem;
+    }
+
+    .benefit-title {
+        font-size: 1.3rem;
+        margin-bottom: 8px;
+    }
+
+    .benefit-description {
+        font-size: 0.95rem;
+        line-height: 1.4;
+    }
+
+    .how-it-works-section {
+        padding: 40px 0;
+    }
+
+    .steps-grid {
+        gap: 25px;
+        margin-top: 30px;
+    }
+
+    .step-card {
+        padding: 20px 15px;
+        border-radius: 14px;
+        min-height: 180px;
+    }
+
+    .step-icon {
+        width: 35px;
+        height: 35px;
+        top: 15px;
+        right: 15px;
+    }
+
+    .step-title {
+        font-size: 1.3rem;
+        margin-bottom: 12px;
+    }
+
+    .step-description {
+        font-size: 0.95rem;
+        line-height: 1.4;
+    }
+}
+
+/* Очень маленькие экраны (до 320px) */
+@media (max-width: 320px) {
+    .container {
+        padding: 0 12px;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+        margin-bottom: 25px;
+    }
+
+    .benefits-circles {
+        gap: 30px;
+        padding: 25px 0;
+    }
+
+    .circle-container {
+        gap: 15px;
+    }
+
+    .circle {
+        width: 45px;
+        height: 45px;
+        font-size: 1.2rem;
+    }
+
+    .benefit-title {
+        font-size: 1.2rem;
+    }
+
+    .benefit-description {
+        font-size: 0.9rem;
+    }
+
+    .step-card {
+        padding: 18px 12px;
+        min-height: 160px;
+    }
+
+    .step-title {
+        font-size: 1.2rem;
+    }
+
+    .step-description {
+        font-size: 0.9rem;
+    }
+}
+
+/* Landscape ориентация на мобильных */
+@media (max-height: 500px) and (orientation: landscape) {
+    .benefits-section {
+        padding: 30px 0 0;
+    }
+
+    .how-it-works-section {
+        padding: 40px 0;
+    }
+
+    .benefits-circles {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+        padding: 30px 0;
+    }
+
+    .circle-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .circle {
+        margin-bottom: 15px;
+    }
+}
+
+/* Отключение hover-эффектов на touch-устройствах */
+@media (hover: none) and (pointer: coarse) {
+    .step-card:hover {
+        transform: none;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    }
+}
+
+/* Поддержка высокопиксельных экранов */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .step-card {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
     }
 }
