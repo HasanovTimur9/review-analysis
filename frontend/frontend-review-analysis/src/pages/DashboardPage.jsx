@@ -232,6 +232,11 @@ const DashboardPage = ({ onGoHome, onLogout, savedFiles = [], onFilesUpdate }) =
                     </button>
                 )}
             </div>
+            <footer className="dashboard-footer">
+                <div className="footer-copyright">
+                    © 2024 Review Analysis
+                </div>
+            </footer>
         </div>
     );
 };
