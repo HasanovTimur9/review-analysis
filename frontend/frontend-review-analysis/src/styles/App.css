@@ -83,31 +83,6 @@ html, body {
     font-family: 'DIN', "Panama Monospace", "CoventryC", monospace;
 }
 
-.return-to-dashboard {
-    text-align: center;
-    padding: 40px 20px;
-    background: var(--color-green);
-    border-top: 2px solid var(--color-brown);
-}
-
-.return-button {
-    background: var(--color-brown);
-    color: var(--color-white);
-    border: none;
-    padding: 12px 24px;
-    border-radius: 8px;
-    font-size: 1.1rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-weight: 600;
-}
-
-.return-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(80, 70, 60, 0.3);
-    background: var(--color-blue-deep);
-}
-
 /* Футер */
 .app-footer {
     padding: 40px;

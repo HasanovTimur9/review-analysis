@@ -46,10 +46,6 @@ export default function App() {
         setCurrentPage('dashboard');
     };
 
-    const handleGoToDashboard = () => {
-        setCurrentPage('dashboard');
-    };
-
     const handleGoHome = () => {
         setCurrentPage('home');
     };
@@ -58,7 +54,6 @@ export default function App() {
         setIsAuthenticated(false);
         setCurrentPage('home');
         localStorage.removeItem('user');
-        // Файлы остаются в localStorage — пользователь может вернуться - по-моему напиздел грок, но хз
     };
 
     return (
@@ -74,18 +69,6 @@ export default function App() {
                     <BenefitsPage />
                     <ReportsPage />
                     <AudiencePage />
-
-                    {/* Кнопка возврата в дашборд для авторизованных пользователей */}
-                    {isAuthenticated && (
-                        <div className="return-to-dashboard">
-                            <button
-                                onClick={handleGoToDashboard}
-                                className="return-button"
-                            >
-                                Вернуться к анализу
-                            </button>
-                        </div>
-                    )}
 
                     <div id="login-section">
                         <LoginPage onLogin={handleLogin} />
