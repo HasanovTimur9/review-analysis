@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/App.css';
 import '../styles/HomePage.css';
-import img1 from "../images/columnar_diagram.png";
-import img2 from "../images/pie_chart.png";
+import img1 from "../images/columnar_diagram.webp";
+import img2 from "../images/pie_chart.webp";
 
 const carouselImages = [img1, img2];
 
