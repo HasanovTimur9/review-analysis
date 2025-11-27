@@ -19,10 +19,7 @@ const Logo = () => (
 
 export default function App() {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const [currentPage, setCurrentPage] = useState('home'); // 'home' или 'dashboard'
-
-    // УБРАНО: состояние savedFiles — DashboardPage сам управляет файлами!
-    // const [savedFiles, setSavedFiles] = useState([]);
+    const [currentPage, setCurrentPage] = useState('home');
 
     // Проверяем авторизацию при загрузке
     useEffect(() => {
@@ -30,7 +27,6 @@ export default function App() {
         if (user) {
             setIsAuthenticated(true);
         }
-        // Убрано: загрузка файлов отсюда — DashboardPage сам восстановит из localStorage
     }, []);
 
     const handleLogin = () => {
@@ -51,7 +47,7 @@ export default function App() {
         setIsAuthenticated(false);
         setCurrentPage('home');
         localStorage.removeItem('user');
-        // Файлы остаются в localStorage — пользователь может вернуться
+        // Файлы остаются в localStorage — пользователь может вернуться - по-моему напиздел грок, но хз
     };
 
     return (
@@ -60,8 +56,6 @@ export default function App() {
                 <DashboardPage
                     onGoHome={handleGoHome}
                     onLogout={handleLogout}
-                    // Убраны: savedFiles и onFilesUpdate
-                    // DashboardPage теперь полностью автономен
                 />
             ) : (
                 <>
