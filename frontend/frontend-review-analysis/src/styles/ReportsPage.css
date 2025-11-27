@@ -36,7 +36,7 @@
     width: 31.3rem;
     height: 31.3rem;
     border-radius: 1.5rem;
-    border: 0.25rem dashed var(--color-brown);
+    border: 0.20rem dashed var(--color-brown);
     padding: 2.5rem;
     display: flex;
     flex-direction: column;
