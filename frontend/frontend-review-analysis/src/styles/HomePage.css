@@ -256,12 +256,13 @@
         width: 100%;
         max-width: 280px;
         justify-content: center;
+        transform: translateX(55px);
     }
 
     .carousel-container {
         height: 350px;
         border-radius: 18px;
-        margin: 0 20px;
+        margin: 0;
     }
 
     .arrow {
