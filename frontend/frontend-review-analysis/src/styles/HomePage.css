@@ -12,7 +12,7 @@
 .page-container {
     position: relative;
     min-height: 100vh;
-    background: var(--color-blue-soft);
+    background: var(--color-blue-main);
     margin: 0;
     padding: 0;
     display: flex;
@@ -51,7 +51,7 @@
     align-items: center;
     gap: 12px;
     padding: 16px 32px;
-    background: var(--color-blue-soft);
+    background: var(--color-blue-main);
     color: var(--color-brown);
     border: none;
     border-radius: 12px;

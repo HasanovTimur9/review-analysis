@@ -1,8 +1,8 @@
 :root {
-    --color-blue-darkest: #253856;
+    /*--color-blue-darkest: #253856;*/
     --color-blue-deep:    #3D568F;
     --color-blue-main:    #A0B9F2;
-    --color-blue-soft:    #A6B7CB;
+    /*--color-blue-soft:    #A6B7CB;*/
     --color-white:        #FDFDF5;
     --color-beige:        #EFEED4;
     --color-green:        #EAF3B2;
@@ -101,7 +101,7 @@ html, body {
 .return-button:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(80, 70, 60, 0.3);
-    background: var(--color-blue-darkest);
+    background: var(--color-blue-deep);
 }
 
 /* Футер */
