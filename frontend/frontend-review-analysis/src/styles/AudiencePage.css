@@ -29,19 +29,23 @@
     margin-right: auto;
 }
 
-/* Горизонтальный аккордеон */
+/* Горизонтальный аккордеон - ОПТИМИЗИРОВАННЫЙ */
 .horizontal-accordion {
     display: flex;
     gap: 1.25rem;
     align-items: stretch;
     height: 37rem;
+    /* Предотвращает мерцание */
+    transform: translateZ(0);
+    backface-visibility: hidden;
 }
 
 .accordion-item {
-    flex: 0 0 5rem; /* Закрытое состояние */
+    flex: 0 0 5rem;
     border-radius: 2.5rem;
     padding: 1.9rem 1.25rem;
     cursor: pointer;
+    /* Улучшенная анимация */
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     display: flex;
@@ -49,10 +53,13 @@
     justify-content: space-between;
     overflow: hidden;
     min-height: 25rem;
+    /* Оптимизация для анимации */
+    will-change: flex, padding;
+    transform: translateZ(0);
 }
 
 .accordion-item.active {
-    flex: 1; /* Раскрытое состояние */
+    flex: 1;
     padding: 2rem;
 }
 
@@ -70,6 +77,8 @@
     flex-direction: column;
     height: 100%;
     color: var(--color-white);
+    /* Предотвращает скачки контента */
+    min-width: 0;
 }
 
 .accordion-title {
@@ -84,6 +93,8 @@
     align-items: center;
     justify-content: center;
     height: 100%;
+    /* Плавный переход */
+    transition: all 0.3s ease 0.1s;
 }
 
 .accordion-item.active .accordion-title {
@@ -103,12 +114,16 @@
     opacity: 0;
     transform: translateY(0.625rem);
     visibility: hidden;
+    /* Ускоренная анимация */
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+    will-change: opacity, transform;
 }
 
 .accordion-item.active .accordion-expanded {
     opacity: 1;
     transform: translateY(0);
     visibility: visible;
+    transition: opacity 0.4s ease 0.2s, transform 0.4s ease 0.2s, visibility 0.4s ease 0.2s;
 }
 
 .accordion-image-container {
@@ -119,6 +134,8 @@
     height: auto;
     margin: 0;
     padding: 0;
+    /* Предотвращает скачки */
+    min-height: 0;
 }
 
 .accordion-image {
@@ -128,6 +145,8 @@
     max-height: 100%;
     border-radius: 1rem;
     object-fit: contain;
+    /* Оптимизация изображений */
+    transform: translateZ(0);
 }
 
 .accordion-description {
@@ -136,6 +155,15 @@
     text-align: left;
     color: var(--color-white);
     margin-top: 0.8rem;
+    /* Плавное появление */
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease 0.3s, transform 0.3s ease 0.3s;
+}
+
+.accordion-item.active .accordion-description {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 /* Номер блока в кружочке */
@@ -157,12 +185,29 @@
     transition: all 0.3s ease;
     line-height: 1;
     padding-top: 0.25rem;
-
 }
 
 .accordion-item.active .accordion-number {
     opacity: 0;
     visibility: hidden;
+}
+
+/* Индикатор загрузки для плавности */
+.accordion-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: transparent;
+    border-radius: 2.5rem;
+    transition: background-color 0.3s ease;
+    pointer-events: none;
+}
+
+.accordion-item:active::before {
+    background: rgba(255, 255, 255, 0.1);
 }
 
 /* Планшеты (768px - 1024px) */
@@ -216,6 +261,13 @@
         height: 2.2rem;
         font-size: 1.1rem;
         bottom: 1rem;
+    }
+
+    /* Отключаем will-change на мобильных для экономии памяти */
+    .horizontal-accordion,
+    .accordion-item,
+    .accordion-expanded {
+        will-change: auto;
     }
 }
 
