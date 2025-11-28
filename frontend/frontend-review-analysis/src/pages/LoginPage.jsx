@@ -127,7 +127,6 @@ export default function LoginPage({ onLogin }) {
                     height="24"
                     viewBox="0 0 24 24"
                     fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
                 >
                     <path
                         d="M12 20L12 4M12 4L5 11M12 4L19 11"

@@ -1,4 +1,5 @@
-import React, {useState, useRef, useEffect} from 'react';
+import React, { useState, useRef, useEffect } from 'react';
+import ResultsPage from './ResultsPage'; // Импортируем страницу результатов
 import '../styles/DashboardPage.css';
 
 // ========== Иконки ==========
@@ -52,7 +53,9 @@ const DeleteIcon = () => (
 const DashboardPage = ({ onLogout }) => {
     const [files, setFiles] = useState([]);
     const [isDragging, setIsDragging] = useState(false);
-    const fileInputRef = useRef(null);        // всегда существует
+    const [showResults, setShowResults] = useState(false);
+    const [isAnalyzing, setIsAnalyzing] = useState(false);
+    const fileInputRef = useRef(null);
     const dragCounter = useRef(0);
 
     // Глобальный drag-and-drop по всему окну
@@ -114,6 +117,23 @@ const DashboardPage = ({ onLogout }) => {
     const handleDelete = (i) => {
         setFiles(prev => prev.filter((_, index) => index !== i));
     };
+
+    const handleAnalyze = async () => {
+        if (files.length === 0) return;
+
+        setIsAnalyzing(true);
+
+        // Имитация процесса анализа
+        await new Promise(resolve => setTimeout(resolve, 2000));
+
+        setIsAnalyzing(false);
+        setShowResults(true);
+    };
+
+    // Если показываем результаты, рендерим ResultsPage
+    if (showResults) {
+        return <ResultsPage onLogout={onLogout} />;
+    }
 
     return (
         <div className="dashboard-page">
@@ -183,8 +203,19 @@ const DashboardPage = ({ onLogout }) => {
 
                 {/* Кнопка анализа */}
                 {files.length > 0 && (
-                    <button className="analyze-btn" onClick={() => console.log(files)}>
-                        Запустить анализ
+                    <button
+                        className={`analyze-btn ${isAnalyzing ? 'analyzing' : ''}`}
+                        onClick={handleAnalyze}
+                        disabled={isAnalyzing}
+                    >
+                        {isAnalyzing ? (
+                            <>
+                                <div className="analyze-spinner"></div>
+                                Анализируем...
+                            </>
+                        ) : (
+                            'Запустить анализ'
+                        )}
                     </button>
                 )}
             </div>
