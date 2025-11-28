@@ -897,22 +897,3 @@
         transition: none !important;
     }
 }
-
-/* Поддержка темной темы */
-@media (prefers-color-scheme: dark) {
-    .dashboard-page {
-        background: #1a1a1a;
-    }
-
-    .dashboard-header {
-        background: #1a1a1a;
-    }
-
-    .upload-area-inner {
-        background: #2d2d2d;
-    }
-
-    .file-item:hover {
-        background: rgba(255, 255, 255, 0.05);
-    }
-}
