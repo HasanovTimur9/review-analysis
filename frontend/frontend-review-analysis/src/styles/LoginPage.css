@@ -5,7 +5,7 @@ h1 {
     font-size: 3.2rem;
     text-align: center;
     margin: 0 0 2rem 0;
-    letter-spacing: 0;
+    letter-spacing: 0.5px;
     color: var(--color-brown);
 }
 
@@ -48,16 +48,14 @@ label {
     font-size: 2.5rem;
     font-weight: 700;
     color: var(--color-brown);
-    margin-bottom: 2rem;
+    margin-bottom: 4rem;
     line-height: 1.2;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
 }
 
 .login-box {
     position: relative;
     width: 100%;
+    margin-bottom: 4rem;
     max-width: 420px;
     padding: 3rem 2.5rem;
     border-radius: 24px;
@@ -118,6 +116,7 @@ label {
     display: block;
     margin-bottom: 0.5rem;
     font-weight: 500;
+    font-size: 1.1rem;
 }
 
 .login-input {
@@ -126,6 +125,7 @@ label {
     border: 1px solid var(--color-brown);
     border-radius: 0.75rem;
     margin-bottom: 1rem;
+    font-size: 1.1rem;
 }
 
 .login-error {
@@ -166,6 +166,12 @@ label {
     opacity: 0.7;
     transform: none;
     box-shadow: none;
+}
+
+.login-input:focus {
+    outline: none;
+    border-color: var(--color-brown);
+    box-shadow: 0 0 6px var(--color-brown);
 }
 
 /* Медиа-запросы для адаптивности */
