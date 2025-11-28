@@ -452,8 +452,8 @@
 /* Кнопка входа в правом верхнем углу */
 .login-corner-button {
     position: fixed;
-    top: 1.3rem;
-    right: 1.3rem;
+    top: 1.9rem;
+    right: 1.9rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -467,8 +467,8 @@
     cursor: pointer;
     transition: all 0.3s ease;
     z-index: 1000;
-    width: 2.8rem;
-    height: 2.8rem;
+    width: 3.5rem;
+    height: 3.5rem;
     box-shadow:
         /* Белая яркая подсветка сверху и снизу */
             0 -1px 0 rgb(255, 255, 255) inset,

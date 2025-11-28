@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import '../styles/App.css';
 import '../styles/LoginPage.css';
 
@@ -7,6 +7,8 @@ export default function LoginPage({ onLogin }) {
     const [address, setAddress] = useState("");
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
+    const [isOnBrownBg, setIsOnBrownBg] = useState(false);
+    const buttonRef = useRef(null);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -19,7 +21,6 @@ export default function LoginPage({ onLogin }) {
         setError("");
         setLoading(true);
 
-        // Имитация сетевой задержки
         await new Promise(resolve => setTimeout(resolve, 800));
 
         console.log("Auth success (mocked)", { name, address });
@@ -33,6 +34,49 @@ export default function LoginPage({ onLogin }) {
         onLogin?.();
         setLoading(false);
     };
+
+    const scrollToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    };
+
+    // Простая проверка для футера
+    const checkFooterOverlap = () => {
+        if (!buttonRef.current) return;
+
+        const buttonRect = buttonRef.current.getBoundingClientRect();
+        const footer = document.querySelector('footer, .footer, .footer-section');
+
+        if (!footer) return;
+
+        const footerRect = footer.getBoundingClientRect();
+
+        // Проверяем, перекрывается ли кнопка футером
+        const isOverlapping = !(buttonRect.bottom < footerRect.top ||
+            buttonRect.top > footerRect.bottom ||
+            buttonRect.right < footerRect.left ||
+            buttonRect.left > footerRect.right);
+
+        setIsOnBrownBg(isOverlapping);
+    };
+
+    useEffect(() => {
+        checkFooterOverlap();
+
+        const handleScroll = () => {
+            checkFooterOverlap();
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('resize', checkFooterOverlap);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+            window.removeEventListener('resize', checkFooterOverlap);
+        };
+    }, []);
 
     return (
         <div className="login-container">
@@ -70,6 +114,30 @@ export default function LoginPage({ onLogin }) {
                     </form>
                 </div>
             </div>
+
+            {/* Кнопка прокрутки наверх */}
+            <button
+                ref={buttonRef}
+                className={`scroll-to-top-btn ${isOnBrownBg ? 'on-brown-bg' : ''}`}
+                onClick={scrollToTop}
+                aria-label="Прокрутить наверх"
+            >
+                <svg
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path
+                        d="M12 20L12 4M12 4L5 11M12 4L19 11"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                    />
+                </svg>
+            </button>
         </div>
     );
 }
