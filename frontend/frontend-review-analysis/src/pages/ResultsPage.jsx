@@ -44,38 +44,45 @@ const ResultsPage = ({ onLogout }) => {
                 // Имитация задержки сети
                 await new Promise(resolve => setTimeout(resolve, 1500));
 
-                // Моковые данные
+                // Моковые данные в формате бэкенда
                 const mockData = {
-                    statistics: {
-                        positive: 156,
-                        neutral: 89,
-                        negative: 45
+                    status: "analysis_complete",
+                    user_id: 1,
+                    reviews_analyzed: 25,
+                    sentiment_counts: {
+                        positive: 15,
+                        negative: 8,
+                        neutral: 2
                     },
-                    positiveKeywords: [
-                        { word: "отличный", count: 42 },
-                        { word: "быстрый", count: 38 },
-                        { word: "качественный", count: 35 },
-                        { word: "удобный", count: 28 },
-                        { word: "рекомендую", count: 25 },
-                        { word: "прекрасный", count: 22 },
-                        { word: "профессиональный", count: 18 }
-                    ],
-                    neutralKeywords: [
-                        { word: "нормальный", count: 32 },
-                        { word: "обычный", count: 28 },
-                        { word: "стандартный", count: 25 },
-                        { word: "приемлемый", count: 22 },
-                        { word: "удовлетворительный", count: 19 },
-                        { word: "средний", count: 16 }
-                    ],
-                    negativeKeywords: [
-                        { word: "плохой", count: 28 },
-                        { word: "медленный", count: 25 },
-                        { word: "неудобный", count: 22 },
-                        { word: "разочарован", count: 18 },
-                        { word: "проблема", count: 15 },
-                        { word: "ужасный", count: 12 }
-                    ]
+                    topics_overall: {
+                        "Качество товара": 10,
+                        "Доставка": 7,
+                        "Цена": 5,
+                        "Сервис": 3
+                    },
+                    topics_by_sentiment: {
+                        positive: {
+                            "Качество товара": 8,
+                            "Доставка": 5,
+                            "Сервис": 2
+                        },
+                        negative: {
+                            "Качество товара": 2,
+                            "Доставка": 2,
+                            "Цена": 4
+                        },
+                        neutral: {
+                            "Цена": 1,
+                            "Доставка": 1
+                        }
+                    },
+                    charts: {
+                        sentiment_pie: "data:image/png;base64,iVBORw0KGgoAAAANS...",
+                        topics_bar: "data:image/png;base64,iVBORw0KGgoAAAANS...",
+                        topics_positive: "data:image/png;base64,iVBORw0KGgoAAAANS...",
+                        topics_negative: "data:image/png;base64,iVBORw0KGgoAAAANS...",
+                        topics_neutral: "data:image/png;base64,iVBORw0KGgoAAAANS..."
+                    }
                 };
 
                 setAnalysisData(mockData);
@@ -88,6 +95,13 @@ const ResultsPage = ({ onLogout }) => {
 
         fetchAnalysisData();
     }, []);
+
+    // Функции для преобразования данных в нужный формат
+    const convertTopicsToKeywords = (topicsObject) => {
+        return Object.entries(topicsObject)
+            .map(([word, count]) => ({ word, count }))
+            .sort((a, b) => b.count - a.count);
+    };
 
     if (loading) {
         return (
@@ -106,6 +120,28 @@ const ResultsPage = ({ onLogout }) => {
         );
     }
 
+    if (!analysisData) {
+        return (
+            <div className="results-page">
+                <header className="results-header">
+                    <div className="header-logo"><Logo /></div>
+                    <button className="logout-button" onClick={onLogout} title="Выйти">
+                        <LogoutIcon />
+                    </button>
+                </header>
+                <div className="loading-container">
+                    <p className="loading-text">Ошибка загрузки данных</p>
+                </div>
+            </div>
+        );
+    }
+
+    // Преобразуем данные для отображения
+    const positiveKeywords = convertTopicsToKeywords(analysisData.topics_by_sentiment.positive);
+    const neutralKeywords = convertTopicsToKeywords(analysisData.topics_by_sentiment.neutral);
+    const negativeKeywords = convertTopicsToKeywords(analysisData.topics_by_sentiment.negative);
+    const overallTopics = convertTopicsToKeywords(analysisData.topics_overall);
+
     return (
         <div className="results-page">
             <header className="results-header">
@@ -117,6 +153,9 @@ const ResultsPage = ({ onLogout }) => {
 
             <main className="results-container">
                 <h1 className="results-title">Результаты анализа</h1>
+                <div className="reviews-count">
+                    Проанализировано отзывов: <strong>{analysisData.reviews_analyzed}</strong>
+                </div>
 
                 {/* Статистика и график */}
                 <section className="stats-section">
@@ -126,15 +165,15 @@ const ResultsPage = ({ onLogout }) => {
                             <div className="stats-cards">
                                 <div className="stat-card stat-positive">
                                     <span className="stat-label">Положительных отзывов:</span>
-                                    <span className="stat-value">{analysisData.statistics.positive}</span>
+                                    <span className="stat-value">{analysisData.sentiment_counts.positive}</span>
                                 </div>
                                 <div className="stat-card stat-neutral">
                                     <span className="stat-label">Нейтральных отзывов:</span>
-                                    <span className="stat-value">{analysisData.statistics.neutral}</span>
+                                    <span className="stat-value">{analysisData.sentiment_counts.neutral}</span>
                                 </div>
                                 <div className="stat-card stat-negative">
                                     <span className="stat-label">Негативных отзывов:</span>
-                                    <span className="stat-value">{analysisData.statistics.negative}</span>
+                                    <span className="stat-value">{analysisData.sentiment_counts.negative}</span>
                                 </div>
                             </div>
                         </div>
@@ -142,97 +181,175 @@ const ResultsPage = ({ onLogout }) => {
                         <div className="chart-column">
                             <h2 className="stats-title">Распределение отзывов</h2>
                             <div className="chart-placeholder">
-                                <p>График будет отображен здесь</p>
-                                <div className="chart-mock">
-                                    <div className="chart-bar positive" style={{height: '70%'}}></div>
-                                    <div className="chart-bar neutral" style={{height: '40%'}}></div>
-                                    <div className="chart-bar negative" style={{height: '20%'}}></div>
-                                </div>
+                                {analysisData.charts.sentiment_pie ? (
+                                    <img
+                                        src={analysisData.charts.sentiment_pie}
+                                        alt="График распределения тональности отзывов"
+                                        className="chart-image"
+                                    />
+                                ) : (
+                                    <>
+                                        <p>График будет отображен здесь</p>
+                                        <div className="chart-mock">
+                                            <div className="chart-bar positive" style={{height: '60%'}}></div>
+                                            <div className="chart-bar neutral" style={{height: '8%'}}></div>
+                                            <div className="chart-bar negative" style={{height: '32%'}}></div>
+                                        </div>
+                                    </>
+                                )}
                             </div>
                         </div>
                     </div>
                 </section>
 
-                {/* Положительные ключевые слова */}
+                {/* Общие темы */}
                 <section className="keywords-section">
-                    <h2 className="keywords-title">Ключевые слова положительных отзывов</h2>
-                    <div className="keywords-container keywords-positive">
-                        <ol className="keywords-list">
-                            {analysisData.positiveKeywords.map((item, index) => (
-                                <li key={index} className="keyword-item">
-                                    <span className="keyword-word">{item.word}</span>
-                                    <span className="keyword-count">- {item.count} раз</span>
-                                </li>
-                            ))}
-                        </ol>
-                    </div>
-                    <div className="chart-full-width">
-                        <div className="chart-placeholder">
-                            <p>График частоты положительных ключевых слов</p>
-                            <div className="chart-mock-horizontal">
-                                {analysisData.positiveKeywords.slice(0, 5).map((item, index) => (
-                                    <div key={index} className="chart-bar-horizontal positive"
-                                         style={{width: `${(item.count / 42) * 80}%`}}>
-                                        <span>{item.word} ({item.count})</span>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
-                {/* Нейтральные ключевые слова */}
-                <section className="keywords-section">
-                    <h2 className="keywords-title">Ключевые слова нейтральных отзывов</h2>
+                    <h2 className="keywords-title">Основные темы во всех отзывах</h2>
                     <div className="keywords-container keywords-neutral">
                         <ol className="keywords-list">
-                            {analysisData.neutralKeywords.map((item, index) => (
+                            {overallTopics.map((item, index) => (
                                 <li key={index} className="keyword-item">
                                     <span className="keyword-word">{item.word}</span>
-                                    <span className="keyword-count">- {item.count} раз</span>
+                                    <span className="keyword-count">- {item.count} упоминаний</span>
                                 </li>
                             ))}
                         </ol>
                     </div>
                     <div className="chart-full-width">
                         <div className="chart-placeholder">
-                            <p>График частоты нейтральных ключевых слов</p>
-                            <div className="chart-mock-horizontal">
-                                {analysisData.neutralKeywords.slice(0, 5).map((item, index) => (
-                                    <div key={index} className="chart-bar-horizontal neutral"
-                                         style={{width: `${(item.count / 32) * 80}%`}}>
-                                        <span>{item.word} ({item.count})</span>
+                            {analysisData.charts.topics_bar ? (
+                                <img
+                                    src={analysisData.charts.topics_bar}
+                                    alt="График распределения тем по отзывам"
+                                    className="chart-image"
+                                />
+                            ) : (
+                                <>
+                                    <p>График частоты основных тем</p>
+                                    <div className="chart-mock-horizontal">
+                                        {overallTopics.slice(0, 5).map((item, index) => (
+                                            <div key={index} className="chart-bar-horizontal neutral"
+                                                 style={{width: `${(item.count / 10) * 80}%`}}>
+                                                <span>{item.word} ({item.count})</span>
+                                            </div>
+                                        ))}
                                     </div>
-                                ))}
-                            </div>
+                                </>
+                            )}
                         </div>
                     </div>
                 </section>
 
-                {/* Негативные ключевые слова */}
+                {/* Положительные темы */}
                 <section className="keywords-section">
-                    <h2 className="keywords-title">Ключевые слова негативных отзывов</h2>
-                    <div className="keywords-container keywords-negative">
+                    <h2 className="keywords-title">Темы положительных отзывов</h2>
+                    <div className="keywords-container keywords-positive">
                         <ol className="keywords-list">
-                            {analysisData.negativeKeywords.map((item, index) => (
+                            {positiveKeywords.map((item, index) => (
                                 <li key={index} className="keyword-item">
                                     <span className="keyword-word">{item.word}</span>
-                                    <span className="keyword-count">- {item.count} раз</span>
+                                    <span className="keyword-count">- {item.count} упоминаний</span>
                                 </li>
                             ))}
                         </ol>
                     </div>
                     <div className="chart-full-width">
                         <div className="chart-placeholder">
-                            <p>График частоты негативных ключевых слов</p>
-                            <div className="chart-mock-horizontal">
-                                {analysisData.negativeKeywords.slice(0, 5).map((item, index) => (
-                                    <div key={index} className="chart-bar-horizontal negative"
-                                         style={{width: `${(item.count / 28) * 80}%`}}>
-                                        <span>{item.word} ({item.count})</span>
+                            {analysisData.charts.topics_positive ? (
+                                <img
+                                    src={analysisData.charts.topics_positive}
+                                    alt="График тем положительных отзывов"
+                                    className="chart-image"
+                                />
+                            ) : (
+                                <>
+                                    <p>График частоты тем в положительных отзывах</p>
+                                    <div className="chart-mock-horizontal">
+                                        {positiveKeywords.slice(0, 5).map((item, index) => (
+                                            <div key={index} className="chart-bar-horizontal positive"
+                                                 style={{width: `${(item.count / 8) * 80}%`}}>
+                                                <span>{item.word} ({item.count})</span>
+                                            </div>
+                                        ))}
                                     </div>
-                                ))}
-                            </div>
+                                </>
+                            )}
+                        </div>
+                    </div>
+                </section>
+
+                {/* Негативные темы */}
+                <section className="keywords-section">
+                    <h2 className="keywords-title">Темы негативных отзывов</h2>
+                    <div className="keywords-container keywords-negative">
+                        <ol className="keywords-list">
+                            {negativeKeywords.map((item, index) => (
+                                <li key={index} className="keyword-item">
+                                    <span className="keyword-word">{item.word}</span>
+                                    <span className="keyword-count">- {item.count} упоминаний</span>
+                                </li>
+                            ))}
+                        </ol>
+                    </div>
+                    <div className="chart-full-width">
+                        <div className="chart-placeholder">
+                            {analysisData.charts.topics_negative ? (
+                                <img
+                                    src={analysisData.charts.topics_negative}
+                                    alt="График тем негативных отзывов"
+                                    className="chart-image"
+                                />
+                            ) : (
+                                <>
+                                    <p>График частоты тем в негативных отзывах</p>
+                                    <div className="chart-mock-horizontal">
+                                        {negativeKeywords.slice(0, 5).map((item, index) => (
+                                            <div key={index} className="chart-bar-horizontal negative"
+                                                 style={{width: `${(item.count / 4) * 80}%`}}>
+                                                <span>{item.word} ({item.count})</span>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </>
+                            )}
+                        </div>
+                    </div>
+                </section>
+
+                {/* Нейтральные темы */}
+                <section className="keywords-section">
+                    <h2 className="keywords-title">Темы нейтральных отзывов</h2>
+                    <div className="keywords-container keywords-neutral">
+                        <ol className="keywords-list">
+                            {neutralKeywords.map((item, index) => (
+                                <li key={index} className="keyword-item">
+                                    <span className="keyword-word">{item.word}</span>
+                                    <span className="keyword-count">- {item.count} упоминаний</span>
+                                </li>
+                            ))}
+                        </ol>
+                    </div>
+                    <div className="chart-full-width">
+                        <div className="chart-placeholder">
+                            {analysisData.charts.topics_neutral ? (
+                                <img
+                                    src={analysisData.charts.topics_neutral}
+                                    alt="График тем нейтральных отзывов"
+                                    className="chart-image"
+                                />
+                            ) : (
+                                <>
+                                    <p>График частоты тем в нейтральных отзывах</p>
+                                    <div className="chart-mock-horizontal">
+                                        {neutralKeywords.slice(0, 5).map((item, index) => (
+                                            <div key={index} className="chart-bar-horizontal neutral"
+                                                 style={{width: `${(item.count / 1) * 80}%`}}>
+                                                <span>{item.word} ({item.count})</span>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </>
+                            )}
                         </div>
                     </div>
                 </section>
