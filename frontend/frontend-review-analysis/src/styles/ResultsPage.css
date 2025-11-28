@@ -81,7 +81,7 @@
     font-weight: 700;
     color: var(--color-brown);
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: 1.2rem;
     line-height: 1.2;
 }
 
@@ -98,7 +98,7 @@
 }
 
 .stats-title {
-    font-size: 1.5rem;
+    font-size: 2rem;
     font-weight: 600;
     color: var(--color-brown);
     margin-bottom: 1.5rem;
@@ -118,12 +118,6 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    transition: all 0.3s ease;
-}
-
-.stat-card:hover {
-    transform: translateY(-0.125rem);
-    box-shadow: 0 0.5rem 1.25rem rgba(0, 0, 0, 0.1);
 }
 
 .stat-positive {
@@ -145,14 +139,14 @@
 }
 
 .stat-label {
-    font-size: 1.1rem;
-    font-weight: 600;
+    font-size: 1.5rem;
+    font-weight: 500;
     color: var(--color-brown);
 }
 
 .stat-value {
     font-size: 1.5rem;
-    font-weight: 700;
+    font-weight: 500;
     color: var(--color-brown);
 }
 
@@ -186,7 +180,7 @@
 }
 
 .keywords-title {
-    font-size: 1.8rem;
+    font-size: 2rem;
     font-weight: 600;
     color: var(--color-brown);
     margin-bottom: 1.5rem;
@@ -239,10 +233,11 @@
 
 .keyword-item::before {
     content: counter(keyword-counter) ".";
-    font-weight: 600;
+    font-weight: 500;
     color: var(--color-brown);
     margin-right: 1rem;
     min-width: 1.5rem;
+    font-size: 1.5rem;
 }
 
 .keywords-negative .keyword-item::before,
@@ -252,7 +247,8 @@
 }
 
 .keyword-word {
-    font-weight: 600;
+    font-weight: 500;
+    font-size: 1.5rem;
     color: var(--color-brown);
     flex: 1;
     text-align: left;
@@ -260,7 +256,7 @@
 
 .keyword-count {
     color: var(--color-brown);
-    font-size: 0.95rem;
+    font-size: 1.5rem;
 }
 
 /* Футер */
@@ -518,13 +514,9 @@
 
 .reviews-count {
     text-align: center;
-    font-size: 1.1rem;
+    font-size: 1.5rem;
     color: var(--color-brown);
     margin-bottom: 2rem;
-    padding: 0.75rem;
-    background: var(--color-beige);
-    border-radius: 0.5rem;
-    max-width: 300px;
     margin-left: auto;
     margin-right: auto;
 }
