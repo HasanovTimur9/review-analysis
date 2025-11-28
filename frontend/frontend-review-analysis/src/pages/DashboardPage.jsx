@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import '../styles/DashboardPage.css';
 
 // ========== Иконки ==========
@@ -49,57 +49,31 @@ const DeleteIcon = () => (
 );
 
 // ========== Основной компонент ==========
-const DashboardPage = ({ onLogout, savedFiles = [], onFilesUpdate }) => {
-    const [files, setFiles] = useState([]);           // ← только здесь хранятся настоящие File-объекты
+const DashboardPage = ({ onLogout }) => {
+    const [files, setFiles] = useState([]);
     const [isDragging, setIsDragging] = useState(false);
+    const [showUploadArea, setShowUploadArea] = useState(false);
     const fileInputRef = useRef(null);
 
-    // 1. Восстановление файлов из props (если они пришли извне, например после логина)
-    useEffect(() => {
-        if (savedFiles && savedFiles.length > 0) {
-            setFiles(savedFiles);
-        }
-    }, [savedFiles]);
+    // Обработчик открытия проводника - показывает область загрузки
+    const handleOpenFileDialog = () => {
+        setShowUploadArea(true);
+        // Даем время для отображения области перед открытием диалога
+        setTimeout(() => {
+            fileInputRef.current?.click();
+        }, 100);
+    };
 
-    // 2. Сохранение метаданных в localStorage + уведомление родителя
-    useEffect(() => {
-        if (files.length > 0) {
-            const filesInfo = files.map(f => ({
-                name: f.name,
-                size: f.size,
-                lastModified: f.lastModified,
-                type: f.type
-            }));
-
-            localStorage.setItem('dashboardFilesInfo', JSON.stringify(filesInfo));
-            onFilesUpdate?.(filesInfo);           // ← передаём только данные, не File-объекты!
-        } else {
-            localStorage.removeItem('dashboardFilesInfo');
-            onFilesUpdate?.([]);
-        }
-    }, [files]);
-
-    // 3. Попытка восстановить из localStorage при первом заходе (если props пустые)
-    useEffect(() => {
-        if (savedFiles.length === 0) {
-            const saved = localStorage.getItem('dashboardFilesInfo');
-            if (saved) {
-                const parsed = JSON.parse(saved);
-                console.log('Восстановлены метаданные файлов из localStorage:', parsed);
-                // File-объекты восстановить нельзя — просто показываем, что были файлы (по желанию)
-            }
-        }
-    }, []);
-
-    // ========== Обработчики файлов ==========
+    // Обработчик выбора файлов из проводника
     const handleFileSelect = (e) => {
         const newFiles = Array.from(e.target.files);
         if (newFiles.length > 0) {
             setFiles(prev => [...prev, ...newFiles]);
-            e.target.value = ''; // сбрасываем input
         }
+        e.target.value = '';
     };
 
+    // Обработчики drag & drop для всей секции загрузки
     const handleDragOver = (e) => {
         e.preventDefault();
         setIsDragging(true);
@@ -107,7 +81,9 @@ const DashboardPage = ({ onLogout, savedFiles = [], onFilesUpdate }) => {
 
     const handleDragLeave = (e) => {
         e.preventDefault();
-        setIsDragging(false);
+        if (!e.currentTarget.contains(e.relatedTarget)) {
+            setIsDragging(false);
+        }
     };
 
     const handleDrop = (e) => {
@@ -120,6 +96,7 @@ const DashboardPage = ({ onLogout, savedFiles = [], onFilesUpdate }) => {
 
         if (dropped.length > 0) {
             setFiles(prev => [...prev, ...dropped]);
+            setShowUploadArea(true);
         }
     };
 
@@ -131,10 +108,8 @@ const DashboardPage = ({ onLogout, savedFiles = [], onFilesUpdate }) => {
 
     const handleAnalyze = () => {
         console.log('Запуск анализа с файлами:', files);
-        // Здесь будет отправка на бэкенд
     };
 
-    // ========== Рендер ==========
     return (
         <div className="dashboard-page">
             {/* Хедер */}
@@ -158,62 +133,77 @@ const DashboardPage = ({ onLogout, savedFiles = [], onFilesUpdate }) => {
                     Система обработает данные, выделит ключевые темы, частые жалобы и основные причины недовольства.
                 </p>
 
-                {/* Загрузка файлов */}
-                <div className="upload-section">
-                    {files.length === 0 ? (
-                        <div className="upload-initial">
-                            <button
-                                className="select-files-btn"
-                                onClick={() => fileInputRef.current?.click()}
-                            >
-                                Выбрать JSON файлы
-                            </button>
-                            <p className="upload-hint">или перетащите файлы сюда</p>
-                        </div>
-                    ) : (
-                        <div
-                            className={`upload-area ${isDragging ? 'dragging' : ''}`}
-                            onDragOver={handleDragOver}
-                            onDragLeave={handleDragLeave}
-                            onDrop={handleDrop}
+                {/* Исходное состояние - только кнопка */}
+                {!showUploadArea && files.length === 0 ? (
+                    <div className="upload-initial">
+                        <button
+                            className="select-files-btn"
+                            onClick={handleOpenFileDialog}
                         >
-                            <div className="upload-area-inner">
-                                <div className="uploaded-files">
-                                    {files.map((file, i) => (
-                                        <div key={i} className="file-item">
-                                            <div className="file-info">
-                                                <span className="file-name">{file.name}</span>
-                                                <span className="file-size">
-                          {(file.size / 1024).toFixed(1)} КБ
-                        </span>
-                                            </div>
-                                            <button
-                                                className="delete-file-btn"
-                                                onClick={() => handleDelete(i)}
-                                                title="Удалить файл"
-                                            >
-                                                <DeleteIcon />
-                                            </button>
-                                        </div>
-                                    ))}
-                                </div>
+                            Выбрать JSON файлы
+                        </button>
+                        <p className="upload-hint">После нажатия откроется область для перетаскивания файлов</p>
+                    </div>
+                ) : (
+                    /* Область загрузки - появляется только после нажатия кнопки */
+                    <div
+                        className={`upload-section ${isDragging ? 'dragging' : ''}`}
+                        onDragOver={handleDragOver}
+                        onDragLeave={handleDragLeave}
+                        onDrop={handleDrop}
+                    >
+                        {files.length === 0 ? (
+                            // Область drag & drop без файлов
+                            <div className="upload-initial">
+                                <button
+                                    className="select-files-btn"
+                                    onClick={handleOpenFileDialog}
+                                >
+                                    Выбрать JSON файлы
+                                </button>
+                                <p className="upload-hint">или перетащите файлы сюда</p>
                             </div>
+                        ) : (
+                            // Состояние с выбранными файлами
+                            <div className="upload-area">
+                                <div className="upload-area-inner">
+                                    <div className="uploaded-files">
+                                        {files.map((file, i) => (
+                                            <div key={i} className="file-item">
+                                                <div className="file-info">
+                                                    <span className="file-name">{file.name}</span>
+                                                    <span className="file-size">
+                                                        {(file.size / 1024).toFixed(1)} КБ
+                                                    </span>
+                                                </div>
+                                                <button
+                                                    className="delete-file-btn"
+                                                    onClick={() => handleDelete(i)}
+                                                    title="Удалить файл"
+                                                >
+                                                    <DeleteIcon />
+                                                </button>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
 
-                            <button className="add-more-btn" onClick={handleAddMore}>
-                                <PlusIcon />
-                            </button>
-                        </div>
-                    )}
+                                <button className="add-more-btn" onClick={handleAddMore}>
+                                    <PlusIcon />
+                                </button>
+                            </div>
+                        )}
 
-                    <input
-                        ref={fileInputRef}
-                        type="file"
-                        multiple
-                        accept=".json,application/json"
-                        onChange={handleFileSelect}
-                        style={{ display: 'none' }}
-                    />
-                </div>
+                        <input
+                            ref={fileInputRef}
+                            type="file"
+                            multiple
+                            accept=".json,application/json"
+                            onChange={handleFileSelect}
+                            style={{ display: 'none' }}
+                        />
+                    </div>
+                )}
 
                 {/* Кнопка анализа */}
                 {files.length > 0 && (
