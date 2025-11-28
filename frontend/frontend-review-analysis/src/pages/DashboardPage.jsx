@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import '../styles/DashboardPage.css';
 
 // ========== Иконки ==========
@@ -52,79 +52,78 @@ const DeleteIcon = () => (
 const DashboardPage = ({ onLogout }) => {
     const [files, setFiles] = useState([]);
     const [isDragging, setIsDragging] = useState(false);
-    const [showUploadArea, setShowUploadArea] = useState(false);
-    const fileInputRef = useRef(null);
+    const fileInputRef = useRef(null);        // всегда существует
+    const dragCounter = useRef(0);
 
-    // Обработчик открытия проводника - показывает область загрузки
-    const handleOpenFileDialog = () => {
-        setShowUploadArea(true);
-        // Даем время для отображения области перед открытием диалога
-        setTimeout(() => {
-            fileInputRef.current?.click();
-        }, 100);
+    // Глобальный drag-and-drop по всему окну
+    useEffect(() => {
+        const enter = (e) => {
+            e.preventDefault();
+            dragCounter.current++;
+            if (e.dataTransfer?.items?.length > 0) setIsDragging(true);
+        };
+        const leave = (e) => {
+            e.preventDefault();
+            dragCounter.current--;
+            if (dragCounter.current === 0) setIsDragging(false);
+        };
+        const over = (e) => e.preventDefault();
+        const drop = (e) => {
+            e.preventDefault();
+            setIsDragging(false);
+            dragCounter.current = 0;
+
+            const dropped = Array.from(e.dataTransfer.files).filter(
+                f => f.type === 'application/json' || f.name.endsWith('.json')
+            );
+            if (dropped.length > 0) {
+                setFiles(prev => [...prev, ...dropped]);
+            }
+        };
+
+        document.addEventListener('dragenter', enter);
+        document.addEventListener('dragleave', leave);
+        document.addEventListener('dragover', over);
+        document.addEventListener('drop', drop);
+
+        return () => {
+            document.removeEventListener('dragenter', enter);
+            document.removeEventListener('dragleave', leave);
+            document.removeEventListener('dragover', over);
+            document.removeEventListener('drop', drop);
+        };
+    }, []);
+
+    // Кнопка в начальном состоянии — ОТКРЫВАЕТ ПРОВОДНИК СРАЗУ
+    const handleSelectFiles = () => {
+        fileInputRef.current?.click();
     };
 
-    // Обработчик выбора файлов из проводника
-    const handleFileSelect = (e) => {
-        const newFiles = Array.from(e.target.files);
-        if (newFiles.length > 0) {
-            setFiles(prev => [...prev, ...newFiles]);
+    const handleFileChange = (e) => {
+        const selected = Array.from(e.target.files).filter(
+            f => f.type === 'application/json' || f.name.endsWith('.json')
+        );
+        if (selected.length > 0) {
+            setFiles(prev => [...prev, ...selected]);
         }
         e.target.value = '';
     };
 
-    // Обработчики drag & drop для всей секции загрузки
-    const handleDragOver = (e) => {
-        e.preventDefault();
-        setIsDragging(true);
-    };
-
-    const handleDragLeave = (e) => {
-        e.preventDefault();
-        if (!e.currentTarget.contains(e.relatedTarget)) {
-            setIsDragging(false);
-        }
-    };
-
-    const handleDrop = (e) => {
-        e.preventDefault();
-        setIsDragging(false);
-
-        const dropped = Array.from(e.dataTransfer.files).filter(
-            f => f.type === 'application/json' || f.name.endsWith('.json')
-        );
-
-        if (dropped.length > 0) {
-            setFiles(prev => [...prev, ...dropped]);
-            setShowUploadArea(true);
-        }
-    };
-
     const handleAddMore = () => fileInputRef.current?.click();
 
-    const handleDelete = (index) => {
-        setFiles(prev => prev.filter((_, i) => i !== index));
-    };
-
-    const handleAnalyze = () => {
-        console.log('Запуск анализа с файлами:', files);
+    const handleDelete = (i) => {
+        setFiles(prev => prev.filter((_, index) => index !== i));
     };
 
     return (
         <div className="dashboard-page">
-            {/* Хедер */}
             <header className="dashboard-header">
-                <div className="header-logo">
-                    <Logo />
-                </div>
-                <div className="header-actions">
-                    <button className="logout-button" onClick={onLogout} title="Выйти">
-                        <LogoutIcon />
-                    </button>
-                </div>
+                <div className="header-logo"><Logo /></div>
+                <button className="logout-button" onClick={onLogout} title="Выйти">
+                    <LogoutIcon />
+                </button>
             </header>
 
-            {/* Основной контент */}
             <div className="dashboard-container">
                 <h1 className="dashboard-title">
                     Загрузите файл с отзывами, чтобы получить детальный анализ в удобном формате
@@ -133,89 +132,65 @@ const DashboardPage = ({ onLogout }) => {
                     Система обработает данные, выделит ключевые темы, частые жалобы и основные причины недовольства.
                 </p>
 
-                {/* Исходное состояние - только кнопка */}
-                {!showUploadArea && files.length === 0 ? (
+                {/* Скрытый input — всегда в DOM, поэтому кнопка работает сразу */}
+                <input
+                    ref={fileInputRef}
+                    type="file"
+                    multiple
+                    accept=".json,application/json"
+                    onChange={handleFileChange}
+                    style={{ display: 'none' }}
+                />
+
+                {/* Начальное состояние — только кнопка */}
+                {files.length === 0 && !isDragging && (
                     <div className="upload-initial">
-                        <button
-                            className="select-files-btn"
-                            onClick={handleOpenFileDialog}
-                        >
+                        <button className="select-files-btn" onClick={handleSelectFiles}>
                             Выбрать JSON файлы
                         </button>
-                        <p className="upload-hint">После нажатия откроется область для перетаскивания файлов</p>
+                        <p className="upload-hint">
+                            или перетащите файлы JSON сюда
+                        </p>
                     </div>
-                ) : (
-                    /* Область загрузки - появляется только после нажатия кнопки */
-                    <div
-                        className={`upload-section ${isDragging ? 'dragging' : ''}`}
-                        onDragOver={handleDragOver}
-                        onDragLeave={handleDragLeave}
-                        onDrop={handleDrop}
-                    >
-                        {files.length === 0 ? (
-                            // Область drag & drop без файлов
-                            <div className="upload-initial">
-                                <button
-                                    className="select-files-btn"
-                                    onClick={handleOpenFileDialog}
-                                >
-                                    Выбрать JSON файлы
-                                </button>
-                                <p className="upload-hint">или перетащите файлы сюда</p>
-                            </div>
-                        ) : (
-                            // Состояние с выбранными файлами
-                            <div className="upload-area">
-                                <div className="upload-area-inner">
-                                    <div className="uploaded-files">
-                                        {files.map((file, i) => (
-                                            <div key={i} className="file-item">
-                                                <div className="file-info">
-                                                    <span className="file-name">{file.name}</span>
-                                                    <span className="file-size">
-                                                        {(file.size / 1024).toFixed(1)} КБ
-                                                    </span>
-                                                </div>
-                                                <button
-                                                    className="delete-file-btn"
-                                                    onClick={() => handleDelete(i)}
-                                                    title="Удалить файл"
-                                                >
-                                                    <DeleteIcon />
-                                                </button>
+                )}
+
+                {/* Зона загрузки — появляется при drag или после загрузки */}
+                {(files.length > 0 || isDragging) && (
+                    <div className={`upload-section ${isDragging ? 'dragging' : ''}`}>
+                        <div className="upload-area">
+                            <div className="upload-area-inner">
+                                <div className="uploaded-files">
+                                    {files.map((file, i) => (
+                                        <div key={i} className="file-item">
+                                            <div className="file-info">
+                                                <span className="file-name">{file.name}</span>
+                                                <span className="file-size">{(file.size / 1024).toFixed(1)} КБ</span>
                                             </div>
-                                        ))}
-                                    </div>
+                                            <button className="delete-file-btn" onClick={() => handleDelete(i)}>
+                                                <DeleteIcon />
+                                            </button>
+                                        </div>
+                                    ))}
                                 </div>
-
-                                <button className="add-more-btn" onClick={handleAddMore}>
-                                    <PlusIcon />
-                                </button>
                             </div>
-                        )}
 
-                        <input
-                            ref={fileInputRef}
-                            type="file"
-                            multiple
-                            accept=".json,application/json"
-                            onChange={handleFileSelect}
-                            style={{ display: 'none' }}
-                        />
+                            <button className="add-more-btn" onClick={handleAddMore}>
+                                <PlusIcon />
+                            </button>
+                        </div>
                     </div>
                 )}
 
                 {/* Кнопка анализа */}
                 {files.length > 0 && (
-                    <button className="analyze-btn" onClick={handleAnalyze}>
+                    <button className="analyze-btn" onClick={() => console.log(files)}>
                         Запустить анализ
                     </button>
                 )}
             </div>
+
             <footer className="dashboard-footer">
-                <div className="footer-copyright">
-                    © 2024 Review Analysis
-                </div>
+                <div className="footer-copyright">© 2024 Review Analysis</div>
             </footer>
         </div>
     );
