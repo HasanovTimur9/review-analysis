@@ -30,60 +30,52 @@ const Logo = () => (
 
 export default function App() {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const [currentPage, setCurrentPage] = useState('home');
+    const [isLoading, setIsLoading] = useState(true);
 
-    // Проверяем авторизацию при загрузке
     useEffect(() => {
         const user = localStorage.getItem('user');
-        if (user) {
+        if (user === 'authenticated') {
             setIsAuthenticated(true);
         }
+        setIsLoading(false);
     }, []);
 
     const handleLogin = () => {
         localStorage.setItem('user', 'authenticated');
         setIsAuthenticated(true);
-        setCurrentPage('dashboard');
-    };
-
-    const handleGoHome = () => {
-        setCurrentPage('home');
     };
 
     const handleLogout = () => {
         setIsAuthenticated(false);
-        setCurrentPage('home');
         localStorage.removeItem('user');
     };
 
+    // Пока идёт проверка localStorage — ничего не рендерим
+    if (isLoading) {
+        return null;
+    }
+
+    if (isAuthenticated) {
+        return <DashboardPage onLogout={handleLogout} />;
+    }
+
     return (
         <>
-            {isAuthenticated && currentPage === 'dashboard' ? (
-                <DashboardPage
-                    onGoHome={handleGoHome}
-                    onLogout={handleLogout}
-                />
-            ) : (
-                <>
-                    <HomePage />
-                    <BenefitsPage />
-                    <ReportsPage />
-                    <AudiencePage />
+            <HomePage />
+            <BenefitsPage />
+            <ReportsPage />
+            <AudiencePage />
 
-                    <div id="login-section">
-                        <LoginPage onLogin={handleLogin} />
-                    </div>
+            <div id="login-section">
+                <LoginPage onLogin={handleLogin} />
+            </div>
 
-                    <footer className="app-footer">
-                        <div className="footer-logo">
-                            <Logo />
-                        </div>
-                        <div className="footer-copyright">
-                            © 2025 ReviewAnalyzer
-                        </div>
-                    </footer>
-                </>
-            )}
+            <footer className="app-footer">
+                <div className="footer-logo"><Logo /></div>
+                <div className="footer-copyright">
+                    © 2025 ReviewAnalyzer
+                </div>
+            </footer>
         </>
     );
 }
