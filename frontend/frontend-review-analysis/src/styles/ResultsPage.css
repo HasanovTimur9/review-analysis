@@ -367,6 +367,18 @@
         text-align: center;
     }
 
+    .keyword-word {
+        font-size: 1.2rem;
+    }
+
+    .keyword-count {
+        font-size: 1.2rem;
+    }
+
+    .keyword-item::before {
+        font-size: 1.2rem;
+    }
+
     .chart-placeholder {
         padding: 1.5rem;
         min-height: 15rem;
@@ -394,6 +406,18 @@
 
     .keywords-section {
         margin-bottom: 2.5rem;
+    }
+
+    .keyword-word {
+        font-size: 1rem;
+    }
+
+    .keyword-count {
+        font-size: 1rem;
+    }
+
+    .keyword-item::before {
+        font-size: 1rem;
     }
 
     .stat-label {
