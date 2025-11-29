@@ -238,12 +238,10 @@
 /* Средние планшеты (601px - 767px) */
 @media (max-width: 47.9375rem) {
     .login-container {
-        align-items: flex-start;
         padding-top: 2rem;
     }
 
     .login-content {
-        justify-content: flex-start;
         padding-top: 2rem;
     }
 
