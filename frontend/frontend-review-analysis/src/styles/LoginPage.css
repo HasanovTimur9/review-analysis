@@ -9,8 +9,7 @@
 }
 
 /* Все подписи к полям */
-.login-label,
-label {
+.login-label {
     display: block;
     font-weight: 700;
     font-size: 1.05rem;
@@ -19,6 +18,9 @@ label {
     color: var(--color-brown);
 }
 
+.login-section {
+    overflow-x: hidden;
+}
 .login-container {
     min-height: 100vh;
     display: flex;
@@ -60,7 +62,6 @@ label {
     border-radius: 1.5rem;
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(0.125rem);
-    -webkit-backdrop-filter: blur(1.25rem);
     overflow: hidden;
 
     /* Основная "стеклянная" рамка + белая подсветка сверху/снизу */
@@ -80,28 +81,22 @@ label {
 .login-box::before {
     content: '';
     position: absolute;
-    left: 0.75rem; right: 0.75rem;
+    left: 0.75rem;
+    right: 0.75rem;
     top: 0;
     height: 0.0625rem;
-    background: linear-gradient(90deg,
-    transparent,
-    rgba(255, 255, 255, 0.8),
-    transparent
-    );
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
     border-radius: 0.0625rem;
 }
 
 .login-box::after {
     content: '';
     position: absolute;
-    left: 0.75rem; right: 0.75rem;
+    left: 0.75rem;
+    right: 0.75rem;
     bottom: 0;
     height: 0.0625rem;
-    background: linear-gradient(90deg,
-    transparent,
-    rgba(255, 255, 255, 0.6),
-    transparent
-    );
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
 }
 
 .login-title {
@@ -119,7 +114,7 @@ label {
 }
 
 .login-input {
-    width: 94%;
+    width: 100%;
     padding: 0.75rem;
     border: 0.0625rem solid var(--color-brown);
     border-radius: 0.75rem;
@@ -194,13 +189,13 @@ label {
         margin-bottom: 1.3rem;
     }
 
-    .login-label,
-    label {
+    .login-label {
         font-size: 1rem;
         margin-bottom: 0.5rem;
     }
 
     .login-input {
+        width: 96%;
         padding: 0.45rem;
         margin-bottom: 0.9rem;
     }
@@ -208,6 +203,19 @@ label {
 
 /* Большие мобильные (481px - 767px) */
 @media (max-width: 47.9375rem) {
+    .login-box {
+        max-width: 80%;
+        padding: 2rem 1.5rem;
+        border-radius: 1.125rem;
+        margin: 2.5rem;
+    }
+
+    .login-box::before,
+    .login-box::after {
+        left: 1.5rem;
+        right: 1.5rem;
+    }
+
     .login-container {
         align-items: flex-start;
         min-height: 100vh;
@@ -227,11 +235,10 @@ label {
     }
 
     .login-box {
-        max-width: 100%;
+        max-width: 80%;
         padding: 2rem 1.5rem;
         border-radius: 1.125rem;
         margin: 2.5rem;
-        transform: translateY(13.4375rem);
     }
 
     .login-title {
@@ -239,14 +246,13 @@ label {
         margin-bottom: 1.2rem;
     }
 
-    .login-label,
-    label {
+    .login-label {
         font-size: 0.95rem;
         margin-bottom: 0.45rem;
     }
 
     .login-input {
-        width: 94%;
+        width: 96%;
         padding: 0.4rem;
         margin-bottom: 0.8rem;
         border-radius: 0.6rem;
@@ -265,10 +271,6 @@ label {
 
 /* Мобильные (320px - 480px) */
 @media (max-width: 30rem) {
-    .login-container {
-        padding: 0.9375rem;
-    }
-
     .login-container-title {
         font-size: 1.7rem;
         margin-bottom: 1rem;
@@ -284,7 +286,12 @@ label {
     .login-box {
         padding: 1.8rem 1.2rem;
         border-radius: 1rem;
-        margin: 18.4375rem 0;
+    }
+
+    .login-box::before,
+    .login-box::after {
+        left: 1.2rem;
+        right: 1.2rem;
     }
 
     .login-title {
@@ -292,14 +299,12 @@ label {
         margin-bottom: 1rem;
     }
 
-    .login-label,
-    label {
+    .login-label {
         font-size: 0.9rem;
         margin-bottom: 0.4rem;
     }
 
     .login-input {
-        width: 93%;
         padding: 0.35rem;
         margin-bottom: 0.7rem;
         border-radius: 0.5rem;
@@ -314,12 +319,6 @@ label {
     .login-error {
         font-size: 0.75rem;
         margin-bottom: 0.7rem;
-    }
-
-    .login-box::before,
-    .login-box::after {
-        left: 0.5rem;
-        right: 0.5rem;
     }
 }
 
@@ -340,19 +339,23 @@ label {
         border-radius: 0.875rem;
     }
 
+    .login-box::before,
+    .login-box::after {
+        left: 1rem;
+        right: 1rem;
+    }
+
     .login-title {
         font-size: 1.3rem;
         margin-bottom: 0.8rem;
     }
 
-    .login-label,
-    label {
+    .login-label {
         font-size: 0.85rem;
         margin-bottom: 0.35rem;
     }
 
     .login-input {
-        width: 92%;
         padding: 0.3rem;
         margin-bottom: 0.6rem;
     }
@@ -375,6 +378,12 @@ label {
         margin: 0.625rem 0;
         padding: 1.5rem 1.5rem;
         max-width: 25rem;
+    }
+
+    .login-box::before,
+    .login-box::after {
+        left: 1.5rem;
+        right: 1.5rem;
     }
 
     .login-title,
@@ -413,18 +422,6 @@ label {
 
     .login-box {
         margin: 5rem 0;
-    }
-}
-
-/* Поддержка темной темы */
-@media (prefers-color-scheme: dark) {
-    .login-input {
-        background: rgba(255, 255, 255, 0.9);
-        color: #000;
-    }
-
-    .login-input::placeholder {
-        color: rgba(0, 0, 0, 0.6);
     }
 }
 
