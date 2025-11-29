@@ -1,0 +1,569 @@
+.results-page {
+    min-height: 100vh;
+    background: var(--color-white);
+    display: flex;
+    flex-direction: column;
+}
+
+.results-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 2.5rem;
+    background: var(--color-white);
+}
+
+.header-logo {
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+    padding: 0.5em;
+    border-radius: 0.5em;
+}
+
+.logout-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5em;
+    border-radius: 0.5em;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logout-button:hover {
+    background: rgba(80, 70, 60, 0.1);
+    transform: scale(1.1);
+}
+
+/* Загрузка */
+.loading-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 1.25rem;
+}
+
+.loading-spinner {
+    width: 3rem;
+    height: 3rem;
+    border: 0.25rem solid var(--color-beige);
+    border-top: 0.25rem solid var(--color-brown);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 1.25rem;
+}
+
+.loading-text {
+    font-size: 1.2rem;
+    color: var(--color-brown);
+    text-align: center;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Основной контент */
+.results-container {
+    flex: 1;
+    max-width: 75rem;
+    margin: 0 auto;
+    padding: 2.5rem 1.25rem;
+}
+
+.results-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--color-brown);
+    text-align: center;
+    margin-bottom: 1.2rem;
+    line-height: 1.2;
+}
+
+/* Секция статистики */
+.stats-section {
+    margin-bottom: 4rem;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+    align-items: start;
+}
+
+.stats-title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--color-brown);
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+/* Карточки статистики */
+.stats-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.stat-card {
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.stat-positive {
+    background: var(--color-green);
+}
+
+.stat-neutral {
+    background: var(--color-beige);
+}
+
+.stat-negative {
+    background: var(--color-blue-deep);
+    color: var(--color-white);
+}
+
+.stat-negative .stat-label,
+.stat-negative .stat-value {
+    color: var(--color-white);
+}
+
+.stat-label {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--color-brown);
+}
+
+.stat-value {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: var(--color-brown);
+}
+
+/* Графики */
+.chart-placeholder {
+    background: var(--color-white);
+    border: 0.125rem dashed var(--color-brown);
+    border-radius: 0.75rem;
+    padding: 2rem;
+    text-align: center;
+    min-height: 18.75rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.chart-placeholder p {
+    color: var(--color-brown);
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+}
+
+.chart-full-width {
+    margin-top: 2rem;
+}
+
+/* Секции ключевых слов */
+.keywords-section {
+    margin-bottom: 4rem;
+}
+
+.keywords-title {
+    font-size: 2rem;
+    font-weight: 600;
+    color: var(--color-brown);
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.keywords-container {
+    border: 0.125rem dashed var(--color-brown);
+    border-radius: 0.75rem;
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.keywords-positive {
+    background: var(--color-green);
+}
+
+.keywords-neutral {
+    background: var(--color-beige);
+}
+
+.keywords-negative {
+    background: var(--color-blue-deep);
+    border: 0.125rem dashed var(--color-white);
+}
+
+.keywords-negative .keyword-item {
+    border-bottom: 0.0625rem solid rgba(177, 175, 175, 0.78);
+}
+
+.keywords-list {
+    list-style: none;
+    counter-reset: keyword-counter;
+    margin: 0;
+    padding: 0;
+}
+
+.keyword-item {
+    counter-increment: keyword-counter;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 0;
+    border-bottom: 0.0625rem solid rgba(80, 70, 60, 0.2);
+}
+
+.keyword-item:last-child {
+    border-bottom: none;
+}
+
+.keyword-item::before {
+    content: counter(keyword-counter) ".";
+    font-weight: 500;
+    color: var(--color-brown);
+    margin-right: 1rem;
+    min-width: 1.5rem;
+    font-size: 1.5rem;
+}
+
+.keywords-negative .keyword-item::before,
+.keywords-negative .keyword-word,
+.keywords-negative .keyword-count {
+    color: var(--color-white);
+}
+
+.keyword-word {
+    font-weight: 500;
+    font-size: 1.5rem;
+    color: var(--color-brown);
+    flex: 1;
+    text-align: left;
+}
+
+.keyword-count {
+    color: var(--color-brown);
+    font-size: 1.5rem;
+}
+
+/* Футер */
+.results-footer {
+    background: var(--color-brown);
+    color: var(--color-beige);
+    padding: 2.5rem 1.25rem;
+    text-align: center;
+    margin-top: auto;
+}
+
+.footer-copyright {
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+/* Медиа-запросы для адаптивности */
+
+/* Планшеты (768px - 1024px) */
+@media (max-width: 64rem) {
+    .results-header {
+        padding: 1rem 2rem;
+    }
+
+    .results-container {
+        padding: 2rem 1rem;
+        max-width: 90%;
+    }
+
+    .results-title {
+        font-size: 2.2rem;
+        margin-bottom: 2.5rem;
+    }
+
+    .stats-grid {
+        gap: 2rem;
+    }
+
+    .stats-title {
+        font-size: 1.3rem;
+    }
+
+    .stat-card {
+        padding: 1.25rem;
+    }
+
+    .stat-label {
+        font-size: 1rem;
+    }
+
+    .stat-value {
+        font-size: 1.3rem;
+    }
+
+    .keywords-title {
+        font-size: 1.6rem;
+    }
+
+    .keywords-container {
+        padding: 1.5rem;
+    }
+}
+
+/* Большие мобильные (481px - 767px) */
+@media (max-width: 47.9375rem) {
+    .results-header {
+        padding: 0.75rem 1.25rem;
+    }
+
+    .results-container {
+        padding: 1.5rem 0.75rem;
+        max-width: 95%;
+    }
+
+    .results-title {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .stats-title {
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+    }
+
+    .stat-card {
+        padding: 1rem;
+        flex-direction: row;
+        gap: 0.5rem;
+        text-align: center;
+    }
+
+    .keywords-title {
+        font-size: 1.4rem;
+    }
+
+    .keywords-container {
+        padding: 1rem;
+    }
+
+    .keyword-item {
+        flex-direction: row;
+        gap: 0.25rem;
+        text-align: center;
+    }
+
+    .keyword-word {
+        font-size: 1.2rem;
+    }
+
+    .keyword-count {
+        font-size: 1.2rem;
+    }
+
+    .keyword-item::before {
+        font-size: 1.2rem;
+    }
+
+    .chart-placeholder {
+        padding: 1.5rem;
+        min-height: 15rem;
+    }
+}
+
+/* Мобильные (320px - 480px) */
+@media (max-width: 30rem) {
+    .results-header {
+        padding: 0.5rem 1rem;
+    }
+
+    .results-container {
+        padding: 1rem 0.5rem;
+    }
+
+    .results-title {
+        font-size: 1.6rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .stats-section {
+        margin-bottom: 2.5rem;
+    }
+
+    .keywords-section {
+        margin-bottom: 2.5rem;
+    }
+
+    .keyword-word {
+        font-size: 1rem;
+    }
+
+    .keyword-count {
+        font-size: 1rem;
+    }
+
+    .keyword-item::before {
+        font-size: 1rem;
+    }
+
+    .stat-label {
+        font-size: 0.9rem;
+    }
+
+    .stat-value {
+        font-size: 1.1rem;
+    }
+
+    .keywords-title {
+        font-size: 1.2rem;
+    }
+
+    .chart-placeholder {
+        padding: 1rem;
+        min-height: 12rem;
+    }
+
+    .chart-placeholder p {
+        font-size: 0.9rem;
+    }
+
+    .results-footer {
+        padding: 1.5rem 0.75rem;
+    }
+
+    .footer-copyright {
+        font-size: 1rem;
+    }
+}
+
+/* Очень маленькие экраны (до 320px) */
+@media (max-width: 20rem) {
+    .results-header {
+        padding: 0.5rem 0.75rem;
+    }
+
+    .results-container {
+        padding: 0.75rem 0.25rem;
+    }
+
+    .results-title {
+        font-size: 1.4rem;
+    }
+
+    .stat-card {
+        padding: 0.75rem;
+    }
+
+    .keywords-container {
+        padding: 0.75rem;
+    }
+
+    .keyword-item {
+        padding: 0.5rem 0;
+    }
+}
+
+/* Landscape ориентация на мобильных */
+@media (max-height: 31.25rem) and (orientation: landscape) {
+    .results-header {
+        padding: 0.5rem 1rem;
+    }
+
+    .results-container {
+        padding: 1rem 0.75rem;
+    }
+
+    .results-title {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .stats-grid {
+        gap: 1rem;
+    }
+
+    .chart-placeholder {
+        min-height: 12rem;
+        padding: 1rem;
+    }
+}
+
+/* Отключение hover-эффектов на touch-устройствах */
+@media (hover: none) and (pointer: coarse) {
+    .logout-button:hover,
+    .stat-card:hover {
+        transform: none;
+        background: none;
+    }
+
+    .stat-card:hover {
+        box-shadow: none;
+    }
+}
+
+/* Поддержка высокопиксельных экранов */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .results-page {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+}
+
+/* Улучшение доступности для больших текстов */
+@media (prefers-reduced-motion: reduce) {
+    .results-page * {
+        transition: none !important;
+        animation: none !important;
+    }
+
+    .loading-spinner {
+        animation: none;
+        border: 0.25rem solid var(--color-beige);
+    }
+}
+
+.reviews-count {
+    text-align: center;
+    font-size: 1.5rem;
+    color: var(--color-brown);
+    margin-bottom: 2rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.chart-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 0.5rem;
+}
+
+/* Адаптивность для новых элементов */
+@media (max-width: 47.9375rem) {
+    .reviews-count {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+        max-width: 250px;
+    }
+}
+
+@media (max-width: 30rem) {
+    .reviews-count {
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+        max-width: 200px;
+    }
+}

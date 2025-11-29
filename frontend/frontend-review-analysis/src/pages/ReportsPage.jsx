@@ -1,5 +1,9 @@
 import React, { useState } from 'react';
 import '../styles/ReportsPage.css';
+import img1 from "../images/topics_negative.webp";
+import img2 from "../images/topics_neutral.webp";
+import img3 from "../images/topics_bar.webp";
+import img4 from "../images/topics_positive.webp";
 
 const ReportsPage = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
@@ -7,17 +11,17 @@ const ReportsPage = () => {
     const slides = [
         {
             id: 1,
-            title: "Почему ставят 1-2 звезды",
+            title: "Какие у Вас сильные стороны",
             description: "",
-            image: "/images/report-1.png",
+            image: img4,
             bgColor: "green",
             type: "title-image"
         },
         {
             id: 2,
             title: "",
-            description: "Какая тема встречается в большинстве негативных отзывов",
-            image: "/images/report-2.png",
+            description: "Самая частая тема нейтральных отзывов",
+            image: img2,
             bgColor: "beige",
             type: "image-description"
         },
@@ -25,15 +29,15 @@ const ReportsPage = () => {
             id: 3,
             title: "Какие слова клиенты пишут чаще всего",
             description: "",
-            image: "/images/report-3.png",
+            image: img3,
             bgColor: "blue-main",
             type: "title-image"
         },
         {
             id: 4,
             title: "",
-            description: "Сколько жалоб на доставку, а сколько на качество товара",
-            image: "/images/report-4.png",
+            description: "Почему ставят 1-2 звезды",
+            image: img1,
             bgColor: "blue-deep",
             type: "image-description"
         }

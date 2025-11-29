@@ -3,6 +3,7 @@
     background: var(--color-white);
     display: flex;
     flex-direction: column;
+    overflow: hidden;
 }
 
 /* Хедер */
@@ -10,7 +11,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 40px;
+    padding: 1.25rem 2.5rem;
     background: var(--color-white);
 }
 
@@ -18,30 +19,28 @@
     display: flex;
     align-items: center;
     transition: all 0.3s ease;
-    padding: 8px;
-    border-radius: 8px;
+    padding: 0.5em;
+    border-radius: 0.5em;
 }
 
 .header-actions {
     display: flex;
-    gap: 10px;
+    gap: 0.625em;
     align-items: center;
 }
 
-.home-button,
 .logout-button {
     background: none;
     border: none;
     cursor: pointer;
-    padding: 8px;
-    border-radius: 8px;
+    padding: 0.5em;
+    border-radius: 0.5em;
     transition: all 0.3s ease;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.home-button:hover,
 .logout-button:hover {
     background: rgba(80, 70, 60, 0.1);
     transform: scale(1.1);
@@ -50,90 +49,138 @@
 /* Основной контент */
 .dashboard-container {
     flex: 1;
-    max-width: 800px;
+    height: 100vh;
     margin: 0 auto;
-    padding: 40px 20px;
+    padding: 2.5rem 1.25rem;
     text-align: center;
+    overflow: visible;
 }
 
 .dashboard-title {
     font-size: 2.5rem;
     font-weight: 700;
+    max-width: 55rem;
+    margin-left: auto;
+    margin-right: auto;
     color: var(--color-brown);
-    margin-bottom: 20px;
+    margin-bottom: 1.25rem;
     line-height: 1.2;
-    text-shadow: none
+    text-shadow: none;
 }
 
 .dashboard-subtitle {
-    font-size: 1.2rem;
+    font-size: 1.4rem;
+    max-width: 40rem;
+    margin-left: auto;
+    margin-right: auto;
     color: var(--color-brown);
-    margin-bottom: 60px;
+    margin-bottom: 2rem;
     line-height: 1.6;
-    opacity: 0.8;
 }
 
-/* Секция загрузки */
-.upload-section {
-    margin-bottom: 40px;
-}
-
-/* Исходное состояние */
+/* Исходное состояние - только кнопка */
 .upload-initial {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 15px;
+    gap: 0.9375rem;
 }
 
 .select-files-btn {
     background: var(--color-green);
     color: var(--color-brown);
     border: none;
-    padding: 20px 40px;
-    border-radius: 12px;
+    padding: 1.25rem 2.5rem;
+    border-radius: 0.75rem;
     font-size: 1.3rem;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
+    min-width: 12.5rem;
 }
 
 .select-files-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(234, 243, 178, 0.4);
+    transform: translateY(-0.125rem);
+    box-shadow: 0 0.5rem 1.25rem rgba(234, 243, 178, 0.4);
 }
 
 .upload-hint {
     color: var(--color-brown);
     font-size: 1rem;
-    opacity: 0.7;
+    margin: 0;
+    max-width: 25rem;
+}
+
+/* Секция загрузки - появляется только после нажатия кнопки */
+.upload-section {
+    position: relative;
+    background: var(--color-beige);
+    border: 2px solid var(--color-brown);
+    border-radius: 1rem;
+    padding: 1.875rem;
+    min-height: 6rem;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+    max-width: 50rem;
+    transition: all 0.3s ease;
+    overflow: visible;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.upload-section.dragging {
+    background: var(--color-beige);
+    border: 2px solid var(--color-brown);
 }
 
 /* Область после выбора файлов */
 .upload-area {
-    position: relative;
-    background: var(--color-beige);
-    border: 2px solid var(--color-brown);
-    border-radius: 16px;
-    padding: 30px;
-    min-height: 430px;
-    transition: all 0.3s ease;
-}
-
-.upload-area.dragging {
-    border-color: var(--color-green);
-    background: rgba(80, 70, 60, 0.05);
+    width: 100%;
+    height: 100%;
 }
 
 .upload-area-inner {
     background: var(--color-white);
-    border: 2px dashed var(--color-blue-main);
-    border-radius: 12px;
-    padding: 40px 20px;
-    min-height: 350px;
+    border: 0.2rem dashed var(--color-brown);
+    border-radius: 0.75rem;
+    min-height: 4.125rem;
     display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: relative;
+    z-index: 1;
+    max-height: 25rem;
+}
+
+/* Состояние когда файлов нет */
+.upload-area-empty {
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding: 2rem;
+    color: var(--color-brown);
+    text-align: center;
+}
+
+.upload-area-empty .upload-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    opacity: 0.5;
+}
+
+.upload-area-empty .upload-text {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.upload-area-empty .upload-subtext {
+    font-size: 0.9rem;
+    opacity: 0.7;
 }
 
 /* Список загруженных файлов */
@@ -143,24 +190,39 @@
 }
 
 .file-item {
-    padding: 12px 0;
-    border-bottom: 1px solid var(--color-blue-main);
+    padding: 0.8rem;
+    border-bottom: 1px solid var(--color-brown);
     display: flex;
     justify-content: space-between;
-    gap: 15px;
+    align-items: center;
+    gap: 0.9375rem;
+    transition: background-color 0.2s ease;
+}
+
+.file-item:hover {
+    background: rgba(80, 70, 60, 0.05);
+}
+
+.file-item:last-child {
+    border-bottom: none;
 }
 
 .file-info {
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 0.25rem;
+    min-width: 0;
+    overflow: hidden;
 }
 
 .file-name {
     font-weight: 600;
     color: var(--color-brown);
     font-size: 1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .file-size {
@@ -169,18 +231,36 @@
     font-size: 0.85rem;
 }
 
+.file-status {
+    font-size: 0.8rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 0.25rem;
+    margin-top: 0.25rem;
+}
+
+.file-status.success {
+    background: var(--color-green);
+    color: var(--color-brown);
+}
+
+.file-status.error {
+    background: #fee2e2;
+    color: #dc2626;
+}
+
 .delete-file-btn {
     background: none;
     border: none;
     cursor: pointer;
-    padding: 6px;
-    border-radius: 4px;
+    padding: 0.375rem;
+    border-radius: 0.25rem;
     color: var(--color-brown);
     opacity: 0.6;
     transition: all 0.3s ease;
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
 }
 
 .delete-file-btn:hover {
@@ -193,10 +273,10 @@
 /* Кнопка "Добавить ещё" */
 .add-more-btn {
     position: absolute;
-    top: -15px;
-    right: -15px;
-    width: 40px;
-    height: 40px;
+    top: -0.9375rem;
+    right: -0.9375rem;
+    width: 2.5rem;
+    height: 2.5rem;
     border-radius: 50%;
     background: var(--color-green);
     border: none;
@@ -206,7 +286,7 @@
     justify-content: center;
     transition: all 0.3s ease;
     z-index: 10;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.15);
 }
 
 .add-more-btn:hover {
@@ -218,86 +298,150 @@
     background: var(--color-green);
     color: var(--color-brown);
     border: none;
-    padding: 16px 40px;
-    border-radius: 12px;
+    padding: 1rem 2.5rem;
+    border-radius: 0.75rem;
     font-size: 1.2rem;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
-    margin-top: 20px;
+    margin-top: 1.25rem;
+    min-width: 12.5rem;
 }
 
 .analyze-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(234, 243, 178, 0.4);
+    transform: translateY(-0.125rem);
+    box-shadow: 0 0.5rem 1.25rem rgba(234, 243, 178, 0.4);
+}
+
+.analyze-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Прогресс бар */
+.upload-progress {
+    width: 100%;
+    height: 0.375rem;
+    background: rgba(80, 70, 60, 0.2);
+    border-radius: 0.25rem;
+    margin-top: 0.5rem;
+    overflow: hidden;
+}
+
+.upload-progress-bar {
+    height: 100%;
+    background: var(--color-green);
+    border-radius: 0.25rem;
+    transition: width 0.3s ease;
 }
 
 /* Футер */
 .dashboard-footer {
     background: var(--color-brown);
     color: var(--color-beige);
-    padding: 40px 20px;
+    padding: 2.5rem 1.25rem;
     text-align: center;
+    margin-top: auto;
 }
 
 .dashboard-footer .footer-copyright {
     font-size: 1.2rem;
+    text-align: center;
 }
 
-/* Медиа-запросы для адаптивности */
+/* ========== АДАПТИВНОСТЬ ========== */
 
-/* Планшеты (768px - 1024px) */
-@media (max-width: 1024px) {
-    .dashboard-header {
-        padding: 15px 30px;
-    }
-
+/* Большие планшеты (1025px - 1200px) */
+@media (max-width: 75rem) {
     .dashboard-container {
-        padding: 30px 20px;
         max-width: 90%;
+        padding: 2rem 1.5rem;
     }
 
     .dashboard-title {
         font-size: 2.2rem;
-        margin-bottom: 15px;
+    }
+
+    .dashboard-subtitle {
+        font-size: 1.2rem;
+        max-width: 35rem;
+    }
+}
+
+/* Планшеты (768px - 1024px) */
+@media (max-width: 64rem) {
+    .dashboard-header {
+        padding: 1rem 2rem;
+    }
+
+    .dashboard-container {
+        padding: 1.875rem 1.25rem;
+        max-width: 90%;
+    }
+
+    .dashboard-title {
+        font-size: 2rem;
+        margin-bottom: 1rem;
     }
 
     .dashboard-subtitle {
         font-size: 1.1rem;
-        margin-bottom: 50px;
+        margin-bottom: 1.875rem;
+        max-width: 30rem;
     }
 
     .select-files-btn {
-        padding: 18px 35px;
-        font-size: 1.2rem;
+        padding: 1.125rem 2rem;
+        font-size: 1.1rem;
+        min-width: 11rem;
     }
 
-    .upload-area {
-        padding: 25px;
-        min-height: 380px;
+    .upload-hint {
+        font-size: 0.95rem;
+        max-width: 22rem;
+    }
+
+    .upload-section {
+        padding: 1.5rem;
+        min-height: 5rem;
     }
 
     .upload-area-inner {
-        padding: 35px 15px;
-        min-height: 300px;
+        min-height: 3.5rem;
+        max-height: 20rem;
+    }
+
+    .file-item {
+        padding: 0.7rem;
+        gap: 0.75rem;
+    }
+
+    .file-name {
+        font-size: 0.95rem;
+    }
+
+    .add-more-btn {
+        width: 2.2rem;
+        height: 2.2rem;
+        top: -0.8rem;
+        right: -0.8rem;
     }
 
     .analyze-btn {
-        padding: 14px 35px;
+        padding: 0.875rem 2rem;
         font-size: 1.1rem;
+        min-width: 11rem;
     }
 }
 
-/* Большие мобильные (481px - 767px) */
-@media (max-width: 767px) {
+/* Средние планшеты (601px - 767px) */
+@media (max-width: 47.9375rem) {
     .dashboard-header {
-        padding: 12px 20px;
+        padding: 0.875rem 1.5rem;
         flex-wrap: wrap;
-        gap: 15px;
-    }
-
-    .header-logo {
-        order: 1;
+        gap: 0.75rem;
     }
 
     .header-actions {
@@ -306,169 +450,281 @@
     }
 
     .dashboard-container {
-        padding: 25px 15px;
+        padding: 1.5rem 1rem;
         max-width: 95%;
     }
 
     .dashboard-title {
         font-size: 1.8rem;
-        margin-bottom: 12px;
+        margin-bottom: 0.75rem;
     }
 
     .dashboard-subtitle {
         font-size: 1rem;
-        margin-bottom: 40px;
+        margin-bottom: 1.5rem;
         line-height: 1.5;
+        max-width: 25rem;
     }
 
-    .upload-section {
-        margin-bottom: 30px;
+    .upload-initial {
+        gap: 0.75rem;
     }
 
     .select-files-btn {
-        padding: 16px 30px;
-        font-size: 1.1rem;
+        padding: 1rem 1.5rem;
+        font-size: 1rem;
         width: 100%;
-        max-width: 280px;
+        max-width: 16rem;
+        min-width: auto;
     }
 
     .upload-hint {
         font-size: 0.9rem;
         text-align: center;
-        padding: 0 10px;
+        padding: 0 0.5rem;
+        max-width: 20rem;
     }
 
-    .upload-area {
-        padding: 20px;
-        min-height: 350px;
-        border-radius: 14px;
+    .upload-section {
+        margin-bottom: 1.5rem;
+        padding: 1.25rem;
+        min-height: 4.5rem;
     }
 
     .upload-area-inner {
-        padding: 30px 15px;
-        min-height: 280px;
-        border-radius: 10px;
+        min-height: 3rem;
+        max-height: 18rem;
+    }
+
+    .upload-area-empty {
+        padding: 1.5rem;
+    }
+
+    .upload-area-empty .upload-icon {
+        font-size: 2.5rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .upload-area-empty .upload-text {
+        font-size: 1rem;
+    }
+
+    .upload-area-empty .upload-subtext {
+        font-size: 0.85rem;
     }
 
     .file-item {
-        padding: 10px 0;
-        gap: 10px;
-        flex-direction: column;
-        align-items: flex-start;
+        padding: 0.625rem;
+        gap: 0.625rem;
+        flex-direction: row;
+        align-items: center;
     }
 
     .file-info {
         width: 100%;
     }
 
-    .delete-file-btn {
-        align-self: flex-end;
-        margin-top: 5px;
-    }
-
-    .add-more-btn {
-        top: -12px;
-        right: -12px;
-        width: 35px;
-        height: 35px;
-    }
-
-    .analyze-btn {
-        padding: 14px 30px;
-        font-size: 1.1rem;
-        width: 100%;
-        max-width: 280px;
-    }
-
-    .dashboard-footer {
-        padding: 30px 15px;
-    }
-
-    .dashboard-footer .footer-copyright {
-        font-size: 1rem;
-    }
-}
-
-/* Мобильные (320px - 480px) */
-@media (max-width: 480px) {
-    .dashboard-header {
-        padding: 10px 15px;
-        flex-direction: column;
-        gap: 12px;
-    }
-
-    .header-logo {
-        order: 1;
-        align-self: center;
-    }
-
-    .header-actions {
-        order: 2;
-        margin-left: 0;
-        align-self: center;
-    }
-
-    .dashboard-container {
-        padding: 20px 12px;
-    }
-
-    .dashboard-title {
-        font-size: 1.6rem;
-        margin-bottom: 10px;
-    }
-
-    .dashboard-subtitle {
-        font-size: 0.95rem;
-        margin-bottom: 30px;
-        line-height: 1.4;
-    }
-
-    .select-files-btn {
-        padding: 14px 25px;
-        font-size: 1rem;
-        max-width: 250px;
-    }
-
-    .upload-hint {
-        font-size: 0.85rem;
-    }
-
-    .upload-area {
-        padding: 15px;
-        min-height: 320px;
-        border-radius: 12px;
-    }
-
-    .upload-area-inner {
-        padding: 25px 12px;
-        min-height: 250px;
-        border-radius: 8px;
-    }
-
     .file-name {
-        font-size: 0.95rem;
+        font-size: 0.9rem;
     }
 
     .file-size {
         font-size: 0.8rem;
     }
 
+    .delete-file-btn {
+        padding: 0.25rem;
+        align-self: center;
+    }
+
     .add-more-btn {
-        top: -10px;
-        right: -10px;
-        width: 32px;
-        height: 32px;
+        top: -0.7rem;
+        right: -0.7rem;
+        width: 2rem;
+        height: 2rem;
     }
 
     .analyze-btn {
-        padding: 12px 25px;
+        padding: 0.875rem 1.5rem;
         font-size: 1rem;
-        max-width: 250px;
-        margin-top: 15px;
+        width: 100%;
+        max-width: 16rem;
+        min-width: auto;
+        margin-top: 1rem;
     }
 
     .dashboard-footer {
-        padding: 25px 12px;
+        padding: 1.5rem 1rem;
+    }
+
+    .dashboard-footer .footer-copyright {
+        font-size: 1rem;
+    }
+}
+
+/* Мобильные (425px - 600px) */
+@media (max-width: 37.5rem) {
+    .dashboard-header {
+        padding: 0.75rem 1.25rem;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .dashboard-container {
+        padding: 1.25rem 0.875rem;
+    }
+
+    .dashboard-title {
+        font-size: 1.6rem;
+        margin-bottom: 0.625rem;
+    }
+
+    .dashboard-subtitle {
+        font-size: 0.95rem;
+        margin-bottom: 1.25rem;
+        line-height: 1.4;
+        max-width: 22rem;
+    }
+
+    .select-files-btn {
+        padding: 0.875rem 1.25rem;
+        font-size: 0.95rem;
+        max-width: 14rem;
+    }
+
+    .upload-hint {
+        font-size: 0.85rem;
+        max-width: 18rem;
+    }
+
+    .upload-section {
+        padding: 1rem;
+        min-height: 4rem;
+    }
+
+    .upload-area-inner {
+        min-height: 2.5rem;
+        max-height: 16rem;
+    }
+
+    .upload-area-empty {
+        padding: 1.25rem;
+    }
+
+    .upload-area-empty .upload-icon {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .file-item {
+        padding: 0.5rem;
+        gap: 0.5rem;
+    }
+
+    .file-name {
+        font-size: 0.85rem;
+    }
+
+    .file-size {
+        font-size: 0.75rem;
+    }
+
+    .add-more-btn {
+        top: -0.6rem;
+        right: -0.6rem;
+        width: 1.8rem;
+        height: 1.8rem;
+    }
+
+    .analyze-btn {
+        padding: 0.75rem 1.25rem;
+        font-size: 0.95rem;
+        max-width: 14rem;
+    }
+}
+
+/* Маленькие мобильные (375px - 424px) */
+@media (max-width: 26.5625rem) {
+    .dashboard-header {
+        padding: 0.625rem 1rem;
+    }
+
+    .dashboard-container {
+        padding: 1rem 0.75rem;
+    }
+
+    .dashboard-title {
+        font-size: 1.4rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .dashboard-subtitle {
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+        max-width: 20rem;
+    }
+
+    .select-files-btn {
+        padding: 0.75rem 1rem;
+        font-size: 0.9rem;
+        max-width: 12rem;
+    }
+
+    .upload-hint {
+        font-size: 0.8rem;
+        max-width: 16rem;
+    }
+
+    .upload-section {
+        padding: 0.875rem;
+        min-height: 3.5rem;
+    }
+
+    .upload-area-inner {
+        min-height: 2rem;
+        max-height: 14rem;
+    }
+
+    .upload-area-empty {
+        padding: 1rem;
+    }
+
+    .upload-area-empty .upload-icon {
+        font-size: 1.75rem;
+    }
+
+    .upload-area-empty .upload-text {
+        font-size: 0.9rem;
+    }
+
+    .upload-area-empty .upload-subtext {
+        font-size: 0.8rem;
+    }
+
+    .file-item {
+        padding: 0.375rem;
+        gap: 0.375rem;
+    }
+
+    .file-name {
+        font-size: 0.8rem;
+    }
+
+    .add-more-btn {
+        top: -0.5rem;
+        right: -0.5rem;
+        width: 1.6rem;
+        height: 1.6rem;
+    }
+
+    .analyze-btn {
+        padding: 0.75rem 1rem;
+        font-size: 0.9rem;
+        max-width: 12rem;
+    }
+
+    .dashboard-footer {
+        padding: 1.25rem 0.75rem;
     }
 
     .dashboard-footer .footer-copyright {
@@ -476,85 +732,113 @@
     }
 }
 
-/* Очень маленькие экраны (до 320px) */
-@media (max-width: 320px) {
+/* Очень маленькие мобильные (до 374px) */
+@media (max-width: 23.4375rem) {
     .dashboard-header {
-        padding: 8px 12px;
+        padding: 0.5rem 0.75rem;
     }
 
     .dashboard-container {
-        padding: 15px 10px;
+        padding: 0.875rem 0.625rem;
     }
 
     .dashboard-title {
-        font-size: 1.4rem;
+        font-size: 1.3rem;
     }
 
     .dashboard-subtitle {
-        font-size: 0.9rem;
-        margin-bottom: 25px;
+        font-size: 0.85rem;
+        max-width: 18rem;
     }
 
     .select-files-btn {
-        padding: 12px 20px;
-        font-size: 0.95rem;
-        max-width: 220px;
+        padding: 0.625rem 0.875rem;
+        font-size: 0.85rem;
+        max-width: 11rem;
     }
 
-    .upload-area {
-        padding: 12px;
-        min-height: 300px;
+    .upload-hint {
+        font-size: 0.75rem;
+        max-width: 14rem;
+    }
+
+    .upload-section {
+        padding: 0.75rem;
     }
 
     .upload-area-inner {
-        padding: 20px 10px;
-        min-height: 230px;
+        max-height: 12rem;
+    }
+
+    .file-name {
+        font-size: 0.75rem;
+    }
+
+    .file-size {
+        font-size: 0.7rem;
     }
 
     .analyze-btn {
-        padding: 12px 20px;
-        font-size: 0.95rem;
-        max-width: 220px;
+        padding: 0.625rem 0.875rem;
+        font-size: 0.85rem;
+        max-width: 11rem;
     }
 }
 
 /* Landscape ориентация на мобильных */
 @media (max-height: 500px) and (orientation: landscape) {
     .dashboard-header {
-        padding: 10px 20px;
+        padding: 0.5rem 1.25rem;
     }
 
     .dashboard-container {
-        padding: 20px 15px;
+        padding: 1rem 0.875rem;
     }
 
     .dashboard-title {
         font-size: 1.5rem;
-        margin-bottom: 10px;
+        margin-bottom: 0.5rem;
     }
 
     .dashboard-subtitle {
         font-size: 0.9rem;
-        margin-bottom: 20px;
+        margin-bottom: 1rem;
     }
 
-    .upload-area {
-        min-height: 250px;
+    .upload-section {
+        min-height: 3rem;
+        margin-bottom: 1rem;
     }
 
     .upload-area-inner {
-        min-height: 200px;
-        padding: 20px 15px;
+        min-height: 2rem;
+        max-height: 10rem;
     }
 
     .file-item {
-        padding: 8px 0;
+        padding: 0.375rem;
+    }
+
+    .analyze-btn {
+        margin-top: 0.75rem;
+        padding: 0.5rem 1.25rem;
+    }
+}
+
+/* Очень большие экраны (1400px+) */
+@media (min-width: 87.5rem) {
+
+    .dashboard-title {
+        font-size: 2.8rem;
+    }
+
+    .dashboard-subtitle {
+        font-size: 1.5rem;
     }
 }
 
 /* Отключение hover-эффектов на touch-устройствах */
 @media (hover: none) and (pointer: coarse) {
-    .home-button:hover,
     .logout-button:hover,
     .select-files-btn:hover,
     .delete-file-btn:hover,
@@ -574,6 +858,10 @@
         color: var(--color-brown);
         opacity: 0.6;
     }
+
+    .file-item:hover {
+        background: transparent;
+    }
 }
 
 /* Поддержка высокопиксельных экранов */
@@ -582,6 +870,10 @@
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
     }
+
+    .upload-area-inner {
+        border-width: 1px;
+    }
 }
 
 /* Улучшение доступности для больших текстов */
@@ -589,5 +881,12 @@
     .dashboard-page * {
         transition: none !important;
         animation: none !important;
+    }
+
+    .select-files-btn,
+    .analyze-btn,
+    .add-more-btn,
+    .delete-file-btn {
+        transition: none !important;
     }
 }

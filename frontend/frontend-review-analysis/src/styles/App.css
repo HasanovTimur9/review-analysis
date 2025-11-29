@@ -1,8 +1,6 @@
 :root {
-    /*--color-blue-darkest: #253856;*/
     --color-blue-deep:    #3D568F;
     --color-blue-main:    #A0B9F2;
-    /*--color-blue-soft:    #A6B7CB;*/
     --color-white:        #FDFDF5;
     --color-beige:        #EFEED4;
     --color-green:        #EAF3B2;
@@ -11,7 +9,7 @@
 
 #root {
     width: 100%;
-    overflow-x: auto;
+    overflow-x: hidden;
 }
 /* 1. Panama — пропорциональный шрифт (обычный) */
 @font-face {
@@ -83,34 +81,9 @@ html, body {
     font-family: 'DIN', "Panama Monospace", "CoventryC", monospace;
 }
 
-.return-to-dashboard {
-    text-align: center;
-    padding: 40px 20px;
-    background: var(--color-green);
-    border-top: 2px solid var(--color-brown);
-}
-
-.return-button {
-    background: var(--color-brown);
-    color: var(--color-white);
-    border: none;
-    padding: 12px 24px;
-    border-radius: 8px;
-    font-size: 1.1rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    font-weight: 600;
-}
-
-.return-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(80, 70, 60, 0.3);
-    background: var(--color-blue-deep);
-}
-
 /* Футер */
 .app-footer {
-    padding: 40px;
+    padding: 2.5rem;
     background: var(--color-brown);
     color: var(--color-beige);
     display: flex;
@@ -124,8 +97,8 @@ html, body {
 }
 
 .footer-logo svg {
-    width: 60px;
-    height: 60px;
+    width: 3.75rem;
+    height: 3.75rem;
 }
 
 .footer-copyright {
@@ -138,21 +111,21 @@ html, body {
 /* Планшеты (768px - 1024px) */
 @media (max-width: 1024px) {
     .return-to-dashboard {
-        padding: 30px 15px;
+        padding: 1.875rem 1rem;
     }
 
     .return-button {
-        padding: 10px 20px;
+        padding: 0.625rem 1.25rem;
         font-size: 1rem;
     }
 
     .app-footer {
-        padding: 30px;
+        padding: 1.875rem;
     }
 
     .footer-logo svg {
-        width: 50px;
-        height: 50px;
+        width: 3.125rem;
+        height: 3.125rem;
     }
 
     .footer-copyright {
@@ -163,55 +136,55 @@ html, body {
 /* Большие мобильные (481px - 767px) */
 @media (max-width: 767px) {
     .return-to-dashboard {
-        padding: 25px 15px;
+        padding: 1.5rem 1rem;
     }
 
     .return-button {
-        padding: 10px 18px;
+        padding: 0.625rem 1.125rem;
         font-size: 0.95rem;
         width: 100%;
-        max-width: 280px;
+        max-width: 17.5rem;
     }
 
     .app-footer {
-        padding: 25px 20px;
+        padding: 1.5rem 1.25rem;
         flex-direction: column;
         text-align: center;
-        gap: 15px;
+        gap: 1rem;
     }
 
     .footer-logo svg {
-        width: 45px;
-        height: 45px;
+        width: 2.8rem;
+        height: 2.8rem;
     }
 
     .footer-copyright {
         font-size: 1.1rem;
         text-align: center;
-        order: -1; /* Перемещаем copyright вверх */
+        order: -1;
     }
 }
 
 /* Мобильные (320px - 480px) */
 @media (max-width: 480px) {
     .return-to-dashboard {
-        padding: 20px 10px;
+        padding: 1.25rem 0.625rem;
     }
 
     .return-button {
-        padding: 8px 16px;
+        padding: 0.5rem 1rem;
         font-size: 0.9rem;
-        max-width: 250px;
+        max-width: 15.625rem;
     }
 
     .app-footer {
-        padding: 20px 15px;
-        gap: 12px;
+        padding: 1.25rem 1rem;
+        gap: 0.75rem;
     }
 
     .footer-logo svg {
-        width: 40px;
-        height: 40px;
+        width: 2.5rem;
+        height: 2.5rem;
     }
 
     .footer-copyright {
@@ -222,22 +195,22 @@ html, body {
 /* Очень маленькие экраны (до 320px) */
 @media (max-width: 320px) {
     .return-to-dashboard {
-        padding: 15px 8px;
+        padding: 1rem 0.5rem;
     }
 
     .return-button {
-        padding: 6px 12px;
+        padding: 0.4rem 0.75rem;
         font-size: 0.85rem;
-        max-width: 220px;
+        max-width: 13.75rem;
     }
 
     .app-footer {
-        padding: 15px 10px;
+        padding: 1rem 0.625rem;
     }
 
     .footer-logo svg {
-        width: 35px;
-        height: 35px;
+        width: 2.2rem;
+        height: 2.2rem;
     }
 
     .footer-copyright {
@@ -248,11 +221,11 @@ html, body {
 /* Поддержка landscape ориентации на мобильных */
 @media (max-height: 500px) and (orientation: landscape) {
     .return-to-dashboard {
-        padding: 20px 15px;
+        padding: 1.25rem 1rem;
     }
 
     .app-footer {
-        padding: 25px 20px;
+        padding: 1.5rem 1.25rem;
     }
 }
 

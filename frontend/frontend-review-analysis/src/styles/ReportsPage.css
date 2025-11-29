@@ -1,20 +1,20 @@
 .reports-page {
-    min-height: 100vh;
+    min-height: 85vh;
     background: var(--color-white);
-    padding: 50px 0;
+    padding: 3.1rem 0;
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 75rem;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 1.3rem;
 }
 
 .section-report-title {
     font-size: 3rem;
     text-align: center;
     color: var(--color-brown);
-    margin-bottom: 20px;
+    margin-bottom: 1.3rem;
     font-weight: 700;
 }
 
@@ -22,22 +22,23 @@
     font-size: 1.5rem;
     text-align: center;
     color: var(--color-brown);
-    margin-bottom: 80px;
+    margin-bottom: 5rem;
 }
 
 .reports-carousel {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 40px;
+    gap: 2.5rem;
 }
 
 .report-box {
-    width: 500px;
-    height: 500px;
-    border-radius: 24px;
-    border: 2px dashed var(--color-brown);
-    padding: 40px;
+    width: 34rem;
+    height: auto;
+    min-height: 15rem;
+    border-radius: 1.5rem;
+    border: 0.20rem dashed var(--color-brown);
+    padding: 2.5rem;
     display: flex;
     flex-direction: column;
     position: relative;
@@ -77,12 +78,18 @@
     justify-content: flex-start;
 }
 
-.report-title {
+.report-title, .report-description  {
     font-size: 1.8rem;
-    font-weight: 700;
+    font-weight: 600;
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 1.5rem;
+    margin-top: 0;
     color: var(--color-brown);
+}
+
+.report-description {
+    margin-bottom: 0;
+    margin-top: 0;
 }
 
 .report-image-container {
@@ -93,14 +100,14 @@
 .report-image {
     max-width: 100%;
     height: auto;
-    border-radius: 12px;
+    border-radius: 0.75rem;
 }
 
 /* Стиль 2 и 4: изображение по центру + описание под ним */
 .report-content.image-description {
     justify-content: center;
     align-items: center;
-    gap: 30px;
+    gap: 1.9rem;
 }
 
 .report-image-center {
@@ -109,135 +116,135 @@
     align-items: center;
 }
 
-.report-description {
-    font-size: 1.3rem;
-    text-align: center;
-    color: var(--color-brown);
-    line-height: 1.5;
-    max-width: 400px;
-}
-
 /* Управление каруселью */
 .carousel-controls {
     display: flex;
     align-items: center;
-    gap: 30px;
+    gap: 1.9rem;
 }
 
 .carousel-arrow {
-    width: 50px;
-    height: 50px;
+    width: 3.1rem;
+    height: 3.1rem;
     border-radius: 50%;
-    border: 2px solid var(--color-blue-main);
-    background: var(--color-white);
     display: flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
     transition: all 0.3s ease;
     color: var(--color-brown);
+    border: 0.25rem solid var(--color-blue-main);
+}
+
+.carousel-arrow--left {
+    color: var(--color-white);
+    background: var(--color-blue-main);
+}
+
+.carousel-arrow--right {
+    color: var(--color-white);
+    background: var(--color-blue-deep);
+    border: 0.25rem solid var(--color-blue-deep);
 }
 
 .carousel-arrow:hover {
-    background: var(--color-blue-main);
-    transform: scale(1.1);
+    background: transparent;
+    color: var(--color-brown);
 }
 
 /* Медиа-запросы для адаптивности */
-
 /* Планшеты (768px - 1024px) */
 @media (max-width: 1024px) {
     .reports-page {
-        padding: 40px 0;
+        padding: 2.5rem 0;
     }
 
     .section-report-title {
         font-size: 2.5rem;
-        margin-bottom: 15px;
+        margin-bottom: 0.9rem;
     }
 
     .section-subtitle {
         font-size: 1.3rem;
-        margin-bottom: 60px;
+        margin-bottom: 3.8rem;
     }
 
     .reports-carousel {
-        gap: 35px;
+        gap: 2.2rem;
     }
 
     .report-box {
-        width: 450px;
-        height: 450px;
-        border-radius: 20px;
-        padding: 35px;
+        width: 28.1rem;
+        border-radius: 1.3rem;
+        padding: 2.2rem;
     }
 
     .report-title {
         font-size: 1.6rem;
-        margin-bottom: 25px;
+        margin-bottom: 1.6rem;
     }
 
     .report-description {
         font-size: 1.2rem;
-        max-width: 350px;
+        max-width: 21.9rem;
     }
 
     .carousel-controls {
-        gap: 25px;
+        gap: 1.6rem;
     }
 
     .carousel-arrow {
-        width: 45px;
-        height: 45px;
+        width: 2.8rem;
+        height: 2.8rem;
     }
 }
 
 /* Большие мобильные (481px - 767px) */
 @media (max-width: 767px) {
     .reports-page {
-        padding: 30px 0;
+        padding: 1.9rem 0;
     }
 
     .container {
-        padding: 0 15px;
+        padding: 0 0.9rem;
     }
 
     .section-report-title {
         font-size: 2rem;
-        margin-bottom: 12px;
+        margin-bottom: 0.8rem;
     }
 
     .section-subtitle {
         font-size: 1.1rem;
-        margin-bottom: 40px;
+        margin-bottom: 2.5rem;
         line-height: 1.4;
     }
 
     .reports-carousel {
-        gap: 30px;
+        gap: 1.9rem;
     }
 
     .report-box {
         width: 100%;
-        max-width: 400px;
+        max-width: 25rem;
         height: auto;
-        min-height: 400px;
-        border-radius: 18px;
-        padding: 30px 25px;
+        min-height: 25rem;
+        border-radius: 1.1rem;
+        padding: 1.9rem 1.6rem;
     }
 
     .report-content.title-image {
         justify-content: center;
-        gap: 25px;
+        gap: 1.6rem;
     }
 
     .report-content.image-description {
-        gap: 25px;
+        gap: 1.6rem;
     }
 
     .report-title {
         font-size: 1.4rem;
-        margin-bottom: 20px;
+        margin-bottom: 1.3rem;
     }
 
     .report-description {
@@ -247,12 +254,12 @@
     }
 
     .carousel-controls {
-        gap: 20px;
+        gap: 1.3rem;
     }
 
     .carousel-arrow {
-        width: 40px;
-        height: 40px;
+        width: 2.5rem;
+        height: 2.5rem;
     }
 
     .report-image {
@@ -263,44 +270,43 @@
 /* Мобильные (320px - 480px) */
 @media (max-width: 480px) {
     .reports-page {
-        padding: 20px 0;
+        padding: 1.3rem 0;
     }
 
     .container {
-        padding: 0 12px;
+        padding: 0 0.8rem;
     }
 
     .section-report-title {
         font-size: 1.7rem;
-        margin-bottom: 10px;
+        margin-bottom: 0.6rem;
     }
 
     .section-subtitle {
         font-size: 1rem;
-        margin-bottom: 30px;
+        margin-bottom: 1.9rem;
         line-height: 1.3;
     }
 
     .reports-carousel {
-        gap: 25px;
+        gap: 1.6rem;
     }
 
     .report-box {
-        max-width: 100%;
-        min-height: 350px;
-        border-radius: 16px;
-        padding: 25px 20px;
-        border-width: 1.5px;
+        max-width: 85%;
+        border-radius: 1rem;
+        padding: 1.6rem 1.3rem;
+        border-width: 0.09rem;
     }
 
     .report-content.title-image,
     .report-content.image-description {
-        gap: 20px;
+        gap: 1.3rem;
     }
 
     .report-title {
         font-size: 1.2rem;
-        margin-bottom: 15px;
+        margin-bottom: 0.9rem;
     }
 
     .report-description {
@@ -309,28 +315,28 @@
     }
 
     .carousel-controls {
-        gap: 15px;
+        gap: 0.9rem;
     }
 
     .carousel-arrow {
-        width: 35px;
-        height: 35px;
+        width: 2.2rem;
+        height: 2.2rem;
     }
 
     .report-image {
         max-width: 85%;
-        border-radius: 8px;
+        border-radius: 0.5rem;
     }
 }
 
 /* Очень маленькие экраны (до 320px) */
 @media (max-width: 320px) {
     .reports-page {
-        padding: 15px 0;
+        padding: 0.9rem 0;
     }
 
     .container {
-        padding: 0 10px;
+        padding: 0 0.6rem;
     }
 
     .section-report-title {
@@ -339,18 +345,17 @@
 
     .section-subtitle {
         font-size: 0.9rem;
-        margin-bottom: 25px;
+        margin-bottom: 1.6rem;
     }
 
     .report-box {
-        min-height: 300px;
-        padding: 20px 15px;
-        border-radius: 14px;
+        padding: 1.3rem 0.9rem;
+        border-radius: 0.9rem;
     }
 
     .report-title {
         font-size: 1.1rem;
-        margin-bottom: 12px;
+        margin-bottom: 0.8rem;
     }
 
     .report-description {
@@ -358,8 +363,8 @@
     }
 
     .carousel-arrow {
-        width: 32px;
-        height: 32px;
+        width: 2rem;
+        height: 2rem;
     }
 
     .report-image {
@@ -370,26 +375,25 @@
 /* Landscape ориентация на мобильных */
 @media (max-height: 500px) and (orientation: landscape) {
     .reports-page {
-        padding: 20px 0;
+        padding: 1.3rem 0;
         min-height: auto;
     }
 
     .section-subtitle {
-        margin-bottom: 30px;
+        margin-bottom: 1.9rem;
     }
 
     .report-box {
-        min-height: 280px;
-        padding: 20px;
+        padding: 1.3rem;
     }
 
     .report-content.title-image,
     .report-content.image-description {
-        gap: 15px;
+        gap: 0.9rem;
     }
 
     .report-title {
-        margin-bottom: 15px;
+        margin-bottom: 0.9rem;
         font-size: 1.2rem;
     }
 
@@ -425,23 +429,17 @@
 /* Оптимизация для очень широких экранов */
 @media (min-width: 1400px) {
     .container {
-        max-width: 1300px;
-    }
-
-    .report-box {
-        width: 550px;
-        height: 550px;
+        max-width: 81.3rem;
     }
 }
 
 /* Поддержка складывающихся устройств */
 @media (max-width: 767px) and (max-height: 500px) {
     .reports-page {
-        padding: 15px 0;
+        padding: 0.9rem 0;
     }
 
     .report-box {
-        min-height: 250px;
-        padding: 20px 15px;
+        padding: 1.3rem 0.9rem;
     }
 }

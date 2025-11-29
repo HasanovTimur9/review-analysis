@@ -60,7 +60,7 @@ const BenefitsPage = () => {
             color: "beige"
         },
         {
-            title: "Загрузка Анализа",
+            title: "Загрузка анализа",
             description: "Загрузите файл с отзывами и запустите анализ. Система обработает данные за считанные минуты.",
             icon: <UploadIcon />, // временная иконка
             color: "green"
@@ -99,7 +99,7 @@ const BenefitsPage = () => {
             {/* Секция "Как это работает" */}
             <section className="how-it-works-section">
                 <div className="container">
-                    <h2 className="section-title">КАК ЭТО РАБОТАЕТ</h2>
+                    <h2 className="section-title">Как это работает</h2>
 
                     <div className="steps-grid">
                         {steps.map((step, index) => (
