@@ -80,7 +80,7 @@
     transform: translateX(0.25rem);
 }
 
-/* Карусель */
+/* Карусель - ОПТИМИЗИРОВАННАЯ */
 .carousel-container {
     position: relative;
     width: 100%;
@@ -89,51 +89,65 @@
     overflow: hidden;
     box-shadow: 0 1.9rem 5rem rgba(0, 0, 0, 0.15);
     background: white;
+    /* Предотвращает скачки */
+    min-height: 20rem;
 }
 
 .carousel-track {
     display: flex;
     width: 100%;
-    height: auto;
-    align-items: center;
+    height: 100%;
     transition: transform 0.8s cubic-bezier(0.7, 0, 0.3, 1);
+    will-change: transform;
 }
 
 .carousel-slide {
-    min-width: 100%;
+    flex: 0 0 100%;
     height: 100%;
+    position: relative;
 }
 
 .carousel-image {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain; /* Изменено с cover на contain для лучшего отображения графиков */
     display: block;
+    background: white;
+    padding: 1rem;
+    box-sizing: border-box;
 }
 
 /* Точки-индикаторы */
-.carousel-container .carousel-dots {
+.carousel-dots {
     position: absolute;
     bottom: 1.5rem;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
     gap: 0.75rem;
+    z-index: 10;
 }
 
-.carousel-container .dot {
+.dot {
     width: 0.75rem;
     height: 0.75rem;
     border-radius: 50%;
     background: var(--color-beige);
     cursor: pointer;
     transition: all 0.3s ease;
+    border: none;
+    padding: 0;
 }
 
-.carousel-container .dot.active {
+.dot.active {
     background: var(--color-brown);
     transform: scale(1.3);
     box-shadow: 0 0 1.25rem rgba(255, 255, 255, 0.6);
+}
+
+.dot:hover {
+    background: var(--color-brown);
+    transform: scale(1.2);
 }
 
 /* ========== АДАПТИВНОСТЬ ========== */
@@ -142,6 +156,10 @@
 @media (min-width: 87.5rem) {
     .content-box {
         max-width: min(87.5rem, 80vw);
+    }
+
+    .carousel-container {
+        height: 35rem;
     }
 }
 
@@ -172,7 +190,7 @@
     }
 
     .carousel-container {
-        height: 30rem;
+        height: 28rem;
     }
 
     .arrow {
@@ -220,13 +238,18 @@
         height: 25rem;
         border-radius: 1.3rem;
         order: -1;
+        margin-bottom: 1rem;
+    }
+
+    .carousel-image {
+        padding: 0.8rem;
     }
 
     .arrow {
         font-size: 1.3rem;
     }
 
-    .carousel-container .carousel-dots {
+    .carousel-dots {
         bottom: 1.3rem;
     }
 }
@@ -277,21 +300,25 @@
     }
 
     .carousel-container {
-        height: 21.9rem;
+        height: 22rem;
         border-radius: 1.1rem;
         margin: 0;
+    }
+
+    .carousel-image {
+        padding: 0.6rem;
     }
 
     .arrow {
         font-size: 1.1rem;
     }
 
-    .carousel-container .carousel-dots {
+    .carousel-dots {
         bottom: 1.1rem;
         gap: 0.6rem;
     }
 
-    .carousel-container .dot {
+    .dot {
         width: 0.6rem;
         height: 0.6rem;
     }
@@ -335,26 +362,30 @@
     }
 
     .carousel-container {
-        height: 17.5rem;
+        height: 18rem;
         border-radius: 1rem;
         margin: 0;
+    }
+
+    .carousel-image {
+        padding: 0.5rem;
     }
 
     .arrow {
         font-size: 1rem;
     }
 
-    .carousel-container .carousel-dots {
+    .carousel-dots {
         bottom: 0.9rem;
         gap: 0.5rem;
     }
 
-    .carousel-container .dot {
+    .dot {
         width: 0.5rem;
         height: 0.5rem;
     }
 
-    .carousel-container .dot.active {
+    .dot.active {
         transform: scale(1.2);
     }
 }
@@ -388,8 +419,16 @@
     }
 
     .carousel-container {
-        height: 15rem;
+        height: 16rem;
         border-radius: 0.9rem;
+    }
+
+    .carousel-image {
+        padding: 0.4rem;
+    }
+
+    .carousel-dots {
+        bottom: 0.8rem;
     }
 }
 
@@ -425,25 +464,29 @@
     }
 
     .carousel-container {
-        height: 13rem;
+        height: 14rem;
         border-radius: 0.8rem;
+    }
+
+    .carousel-image {
+        padding: 0.3rem;
     }
 
     .arrow {
         font-size: 0.9rem;
     }
 
-    .carousel-container .carousel-dots {
+    .carousel-dots {
         bottom: 0.6rem;
         gap: 0.3rem;
     }
 
-    .carousel-container .dot {
+    .dot {
         width: 0.4rem;
         height: 0.4rem;
     }
 
-    .carousel-container .dot.active {
+    .dot.active {
         transform: scale(1.1);
     }
 }
@@ -472,12 +515,16 @@
     }
 
     .carousel-container {
-        height: 12rem;
+        height: 14rem;
     }
 
     .try-button {
         padding: 0.4rem 1rem;
         font-size: 0.9rem;
+    }
+
+    .carousel-dots {
+        bottom: 0.7rem;
     }
 }
 
@@ -498,7 +545,22 @@
     }
 
     .carousel-container {
-        height: 10rem;
+        height: 12rem;
+    }
+
+    .carousel-dots {
+        bottom: 0.5rem;
+    }
+}
+
+/* Особые стили для очень широких экранов */
+@media (min-width: 120rem) {
+    .carousel-container {
+        height: 40rem;
+    }
+
+    .carousel-image {
+        padding: 2rem;
     }
 }
 
@@ -513,6 +575,16 @@
     .try-button:hover .arrow {
         transform: none;
     }
+
+    .dot:hover {
+        transform: none;
+        background: var(--color-beige);
+    }
+
+    .dot.active:hover {
+        transform: scale(1.3);
+        background: var(--color-brown);
+    }
 }
 
 /* Улучшение доступности */
@@ -522,7 +594,8 @@
     }
 
     .try-button,
-    .arrow {
+    .arrow,
+    .dot {
         transition: none;
     }
 
@@ -533,6 +606,10 @@
     .try-button:hover .arrow {
         transform: none;
     }
+
+    .dot.active {
+        transform: scale(1.1);
+    }
 }
 
 /* Поддержка высокопиксельных экранов */
@@ -540,6 +617,10 @@
     .content-box {
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
+    }
+
+    .carousel-image {
+        image-rendering: crisp-edges;
     }
 }
 
@@ -554,7 +635,6 @@
     padding: 0.6rem;
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(2px);
-    -webkit-backdrop-filter: blur(2px);
     border: 0.0625rem solid rgba(255, 255, 255, 0.15);
     border-radius: 50%;
     color: var(--color-brown);
@@ -629,7 +709,6 @@
     }
 }
 
-/* Убедимся, что контент бокс никогда не касается краев экрана */
 @media (max-width: 23.4375rem) {
     .page-container {
         padding-left: 0.5rem;
