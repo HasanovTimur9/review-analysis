@@ -49,7 +49,7 @@
 /* Основной контент */
 .dashboard-container {
     flex: 1;
-    max-width: 50rem;
+    height: 100vh;
     margin: 0 auto;
     padding: 2.5rem 1.25rem;
     text-align: center;
@@ -59,6 +59,9 @@
 .dashboard-title {
     font-size: 2.5rem;
     font-weight: 700;
+    max-width: 55rem;
+    margin-left: auto;
+    margin-right: auto;
     color: var(--color-brown);
     margin-bottom: 1.25rem;
     line-height: 1.2;
@@ -116,6 +119,10 @@
     border-radius: 1rem;
     padding: 1.875rem;
     min-height: 6rem;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+    max-width: 50rem;
     transition: all 0.3s ease;
     overflow: visible;
     display: flex;
@@ -822,18 +829,8 @@
     }
 }
 
-/* Большие экраны (1200px+) */
-@media (min-width: 75.0625rem) {
-    .dashboard-container {
-        max-width: 52rem;
-    }
-}
-
 /* Очень большие экраны (1400px+) */
 @media (min-width: 87.5rem) {
-    .dashboard-container {
-        max-width: 55rem;
-    }
 
     .dashboard-title {
         font-size: 2.8rem;
