@@ -416,7 +416,7 @@ const DashboardPage = ({ onLogout }) => {
             </div>
 
             <footer className="dashboard-footer">
-                <div className="footer-copyright">© 2024 Review Analysis</div>
+                <div className="footer-copyright">© 2025 Review Analysis</div>
             </footer>
         </div>
     );
