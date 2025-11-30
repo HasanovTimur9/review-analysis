@@ -197,13 +197,13 @@ const EmbeddedResults = ({ analysisData}) => {
 };
 
 // ========== Основной компонент ==========
-const DashboardPage = ({ onLogout, userId }) => {
+const DashboardPage = ({ onLogout, userId, data }) => {
     const [files, setFiles] = useState([]);
     const [isDragging, setIsDragging] = useState(false);
     const [isAnalyzing, setIsAnalyzing] = useState(false);
     const fileInputRef = useRef(null);
     const dragCounter = useRef(0);
-    const [analysisData, setAnalysisData] = useState(null);
+    const [analysisData, setAnalysisData] = useState(data);
     const [error, setError] = useState(false);
 
     // Глобальный drag-and-drop по всему окну
@@ -286,6 +286,10 @@ const DashboardPage = ({ onLogout, userId }) => {
             }
             const data = await resp.json();
             setAnalysisData(data);
+            
+            localStorage.setItem('analysisData', JSON.stringify({
+                data: data
+            }))
         } catch (err) {
             setError(err.message || 'Ошибка сети');
         } finally {

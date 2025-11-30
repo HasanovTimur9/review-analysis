@@ -42,8 +42,15 @@ export default function LoginPage({ onLogin }) {
                 name: name.trim(),
                 address: address.trim(),
                 user_id: data.user_id,
-                timestamp: Date.now()
+                timestamp: Date.now(),
+                status: data.status
             }));
+
+            if (data.status === "existing user") {
+                localStorage.setItem('analysisData', JSON.stringify({
+                    data: data
+                }))
+            }
 
             onLogin?.(data.user_id);
         } catch (err) {

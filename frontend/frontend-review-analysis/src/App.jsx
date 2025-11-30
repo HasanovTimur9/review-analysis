@@ -31,6 +31,7 @@ const Logo = () => (
 export default function App() {
     const [userId, setUserId] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
+    const [analysisData, setAnalysisData] = useState(null);
 
     useEffect(() => {
         const stored = localStorage.getItem('user');
@@ -41,6 +42,16 @@ export default function App() {
         if (parsed && parsed.user_id) {
             setUserId(parsed.user_id);
         }
+
+        const storedAnalysis = localStorage.getItem('analysisData');
+        let parsedAnalysis = null;
+        try {
+            parsedAnalysis = storedAnalysis && JSON.parse(storedAnalysis);
+        } catch {}
+        if (parsedAnalysis) {
+            setAnalysisData(parsedAnalysis.data);
+        }
+        
         setIsLoading(false);
     }, []);
 
@@ -50,7 +61,9 @@ export default function App() {
     
     const handleLogout = () => {
         setUserId(null);
+        setAnalysisData(null);
         localStorage.removeItem('user');
+        localStorage.removeItem('analysisData');
     };
 
     // Пока идёт проверка localStorage — ничего не рендерим
@@ -59,7 +72,7 @@ export default function App() {
     }
 
     if (userId) {
-        return <DashboardPage onLogout={handleLogout} userId={userId} />;
+        return <DashboardPage onLogout={handleLogout} userId={userId} data={analysisData} />;
     }
 
     return (
