@@ -21,18 +21,36 @@ export default function LoginPage({ onLogin }) {
         setError("");
         setLoading(true);
 
-        await new Promise(resolve => setTimeout(resolve, 800));
+        try {
+            const resp = await fetch('http://localhost:8000/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: name.trim(),
+                    address: address.trim()
+                })
+            });
+            if (!resp.ok) {
+                const err = await resp.json();
+                throw new Error(err.detail || 'Ошибка авторизации');
+            }
+            const data = await resp.json();
 
-        console.log("Auth success (mocked)", { name, address });
+            localStorage.setItem('user', JSON.stringify({
+                name: name.trim(),
+                address: address.trim(),
+                user_id: data.user_id,
+                timestamp: Date.now()
+            }));
 
-        localStorage.setItem('user', JSON.stringify({
-            name: name.trim(),
-            address: address.trim(),
-            timestamp: Date.now()
-        }));
-
-        onLogin?.();
-        setLoading(false);
+            onLogin?.(data.user_id);
+        } catch (err) {
+            setError(err.message || 'Ошибка сети');
+        } finally {
+            setLoading(false);
+        }
     };
 
     const scrollToTop = () => {

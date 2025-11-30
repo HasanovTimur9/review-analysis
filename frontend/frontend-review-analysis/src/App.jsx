@@ -29,24 +29,27 @@ const Logo = () => (
 );
 
 export default function App() {
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [userId, setUserId] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        const user = localStorage.getItem('user');
-        if (user === 'authenticated') {
-            setIsAuthenticated(true);
+        const stored = localStorage.getItem('user');
+        let parsed = null;
+        try {
+            parsed = stored && JSON.parse(stored);
+        } catch {}
+        if (parsed && parsed.user_id) {
+            setUserId(parsed.user_id);
         }
         setIsLoading(false);
     }, []);
 
-    const handleLogin = () => {
-        localStorage.setItem('user', 'authenticated');
-        setIsAuthenticated(true);
+    const handleLogin = (user_id) => {
+        setUserId(user_id);
     };
-
+    
     const handleLogout = () => {
-        setIsAuthenticated(false);
+        setUserId(null);
         localStorage.removeItem('user');
     };
 
@@ -55,8 +58,8 @@ export default function App() {
         return null;
     }
 
-    if (isAuthenticated) {
-        return <DashboardPage onLogout={handleLogout} />;
+    if (userId) {
+        return <DashboardPage onLogout={handleLogout} userId={userId} />;
     }
 
     return (
@@ -65,11 +68,9 @@ export default function App() {
             <BenefitsPage />
             <ReportsPage />
             <AudiencePage />
-
             <div id="login-section">
                 <LoginPage onLogin={handleLogin} />
             </div>
-
             <footer className="app-footer">
                 <div className="footer-logo"><Logo /></div>
                 <div className="footer-copyright">
