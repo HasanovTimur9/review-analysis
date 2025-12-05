@@ -29,25 +29,41 @@ const Logo = () => (
 );
 
 export default function App() {
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [userId, setUserId] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
+    const [analysisData, setAnalysisData] = useState(null);
 
     useEffect(() => {
-        const user = localStorage.getItem('user');
-        if (user === 'authenticated') {
-            setIsAuthenticated(true);
+        const stored = localStorage.getItem('user');
+        let parsed = null;
+        try {
+            parsed = stored && JSON.parse(stored);
+        } catch {}
+        if (parsed && parsed.user_id) {
+            setUserId(parsed.user_id);
         }
+
+        const storedAnalysis = localStorage.getItem('analysisData');
+        let parsedAnalysis = null;
+        try {
+            parsedAnalysis = storedAnalysis && JSON.parse(storedAnalysis);
+        } catch {}
+        if (parsedAnalysis) {
+            setAnalysisData(parsedAnalysis.data);
+        }
+        
         setIsLoading(false);
     }, []);
 
-    const handleLogin = () => {
-        localStorage.setItem('user', 'authenticated');
-        setIsAuthenticated(true);
+    const handleLogin = (user_id) => {
+        setUserId(user_id);
     };
-
+    
     const handleLogout = () => {
-        setIsAuthenticated(false);
+        setUserId(null);
+        setAnalysisData(null);
         localStorage.removeItem('user');
+        localStorage.removeItem('analysisData');
     };
 
     // Пока идёт проверка localStorage — ничего не рендерим
@@ -55,8 +71,8 @@ export default function App() {
         return null;
     }
 
-    if (isAuthenticated) {
-        return <DashboardPage onLogout={handleLogout} />;
+    if (userId) {
+        return <DashboardPage onLogout={handleLogout} userId={userId} data={analysisData} />;
     }
 
     return (
@@ -65,11 +81,9 @@ export default function App() {
             <BenefitsPage />
             <ReportsPage />
             <AudiencePage />
-
             <div id="login-section">
                 <LoginPage onLogin={handleLogin} />
             </div>
-
             <footer className="app-footer">
                 <div className="footer-logo"><Logo /></div>
                 <div className="footer-copyright">
